@@ -1,0 +1,8 @@
+<YAMAHA_AV rsp="GET" RC="0">
+    <Spotify><Play_Info>
+        <Feature_Availability>Ready</Feature_Availability>
+        <Playback_Info>Play</Playback_Info>
+        <Meta_Info><Artist>KSK Mix House</Artist><Album>Give Me More</Album><Track>Give Me More</Track></Meta_Info>
+        <Input_Logo><URL_S>/YamahaRemoteControl/Logos/logo0065.png</URL_S><URL_M></URL_M><URL_L></URL_L></Input_Logo>
+    </Play_Info></Spotify>
+</YAMAHA_AV>

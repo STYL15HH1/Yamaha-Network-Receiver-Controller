@@ -1,0 +1,18 @@
+.gradle/
+.kotlin/
+.idea/
+local.properties
+**/build/
+.work/
+*.iml
+*.jks
+
+# Local diagnostic logs
+*.log
+logcat-*.txt
+
+# Local source artwork
+Image/
+
+# Local source artwork
+Image/

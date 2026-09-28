@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dynamic user-selected LAN hosts cannot be enumerated in static domain-config.
+     YamahaHttpClient restricts all destinations to private/link-local IPv4, port 80,
+     disables proxies and redirects. Discovery also verifies same-host UPnP descriptions on port 80/8080. -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>
