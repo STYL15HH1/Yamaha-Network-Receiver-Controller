@@ -49,6 +49,29 @@ Choose **System default** or English, Español, Deutsch, Français, Italiano, Po
 
 Appearance supports **System / Light / Dark**, with saved preferences.
 
+## Compatibility
+
+**Yamaha R-N301 is the primary and physically tested target.** The application communicates through Yamaha's legacy local XML control endpoint: `/YamahaRemoteControl/ctrl`.
+
+Other Yamaha network receivers exposing the same legacy XML API may be partially or fully compatible. Yamaha R-N500 and selected older RX-V and RX-A receivers are potential compatibility candidates only; they are not claimed as supported, verified or tested.
+
+Compatibility can vary because receivers expose different inputs, tuner capabilities, network services and XML command trees.
+
+If you test another receiver, please [open a GitHub issue](https://github.com/STYL15HH1/Yamaha-Network-Receiver-Controller/issues) with the exact Yamaha model, working features and non-working features.
+
+### Tested devices
+
+| Device / feature | Yamaha R-N301 |
+| --- | --- |
+| Device/model status | Verified |
+| Power | Verified |
+| Volume/Mute | Verified |
+| Sources | Verified |
+| Tuner | Verified |
+| Spotify | Verified |
+| NET RADIO | Verified |
+| SERVER/DLNA | Implemented, but not physically end-to-end tested |
+
 ## Requirements
 
 - A **Yamaha R-N301** network receiver. Other Yamaha models have not been validated and are not guaranteed to work.
