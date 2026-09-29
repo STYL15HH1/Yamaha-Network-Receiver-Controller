@@ -44,3 +44,10 @@ The Yamaha name and emblem remain Yamaha trademarks, not relicensed under the pr
 AndroidX, Kotlin, coroutines and test dependencies retain upstream licenses. Yamaha reference repositories and receiver-served JavaScript were inspected for protocol research, not copied into the application or used as runtime dependencies. Receiver firmware scripts remain only in ignored local research files.
 
 No runtime image library or remote image service is used.
+
+
+## v1.0.0 redistribution review
+
+The existing project evidence records user-supplied Spotify, AirPlay and Yamaha artwork and derivative hashes, but includes no license, written permission, or documented brand-usage grant establishing redistribution rights for these assets in a public APK. Trademark attribution alone does not establish permission. **Public release concern: the owner must establish applicable permission/terms before distributing these packaged assets.** No replacement artwork was downloaded and no licensing permission is claimed here.
+
+The MIT license covers original project code/assets only. The included Apache 2.0 Material Icons license remains applicable to upstream icon paths. Original source images stay in ignored local storage; only the existing derived application resources are tracked.

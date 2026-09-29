@@ -1,4 +1,4 @@
-# v0.2 discovery
+# Receiver discovery (v1.0.0; introduced in v0.2)
 
 The discovery abstraction is independent of Compose:
 

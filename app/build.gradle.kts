@@ -2,6 +2,30 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.plugin.compose")
 }
+val releaseSigningProperties = listOf(
+    "YAMAHA_RELEASE_STORE_FILE",
+    "YAMAHA_RELEASE_KEY_ALIAS",
+    "YAMAHA_RELEASE_STORE_PASSWORD",
+    "YAMAHA_RELEASE_KEY_PASSWORD"
+).associateWith { providers.gradleProperty(it) }
+
+val validateReleaseSigningCredentials = tasks.register("validateReleaseSigningCredentials") {
+    group = "verification"
+    description = "Require owner-controlled signing properties for release artifacts."
+    doLast {
+        val missing = releaseSigningProperties.filterValues {
+            it.orNull.isNullOrEmpty()
+        }.keys
+        check(missing.isEmpty()) {
+            "Release signing requires Gradle properties: " + missing.joinToString() +
+                ". Configure them outside the repository. No unsigned release will be produced."
+        }
+        check(file(releaseSigningProperties.getValue("YAMAHA_RELEASE_STORE_FILE").get()).isFile) {
+            "Release signing keystore is unavailable. Check YAMAHA_RELEASE_STORE_FILE."
+        }
+    }
+}
+
 android {
     namespace = "com.styl15hh1.rn301controller"
     compileSdk = 37
@@ -9,8 +33,22 @@ android {
         applicationId = "com.styl15hh1.rn301controller"
         minSdk = 26
         targetSdk = 36
-        versionCode = 14
-        versionName = "0.7.7"
+        versionCode = 15
+        versionName = "1.0.0"
+    }
+    signingConfigs {
+        create("release") {
+            storeFile = releaseSigningProperties.getValue("YAMAHA_RELEASE_STORE_FILE")
+                .orNull?.takeIf { it.isNotEmpty() }?.let { file(it) }
+            keyAlias = releaseSigningProperties.getValue("YAMAHA_RELEASE_KEY_ALIAS").orNull
+            storePassword = releaseSigningProperties.getValue("YAMAHA_RELEASE_STORE_PASSWORD").orNull
+            keyPassword = releaseSigningProperties.getValue("YAMAHA_RELEASE_KEY_PASSWORD").orNull
+        }
+    }
+    buildTypes {
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
+        }
     }
     buildFeatures { compose = true; buildConfig = true }
     compileOptions {
@@ -21,6 +59,11 @@ android {
     lint { abortOnError = true }
     testOptions.unitTests.isIncludeAndroidResources = true
 }
+// Release-only task dependencies also cover aggregate build/assemble invocations.
+// No secret values are task inputs or part of failure messages.
+tasks.matching { it.name == "preReleaseBuild" || it.name == "validateSigningRelease" }
+    .configureEach { dependsOn(validateReleaseSigningCredentials) }
+
 tasks.withType<Test>().configureEach { inputs.dir("src/main/res") }
 
 dependencies {

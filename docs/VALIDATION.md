@@ -1,3 +1,60 @@
+# v1.0.0 validation
+
+## Final release polish validation - 2026-09-29
+
+The Spotify Now Playing header retains the existing wordmark and accessible source name while removing the duplicate visible label. Artwork dimensions, metadata, playback controls and navigation remain unchanged. Signing configuration and release identity are unchanged.
+
+- Full unit suite: **388 passed**, 39 classes, zero failures/errors/skips; includes two new Spotify header regression tests.
+- All four resource validation tests pass, including all eight locales and launcher densities.
+- Gradle testDebugUnitTest assembleRelease lint lintRelease: **BUILD SUCCESSFUL**, 3m 44s.
+- Debug and release lint: **0 errors / 7 existing warnings** each; no new suppressions.
+- Final APK: app/build/outputs/apk/release/Yamaha-Network-Receiver-Controller-v1.0.0.apk; **9,011,407 bytes**.
+- apksigner: **Verifies**, one signer; v2 true; v1/v3/v3.1/v4 false.
+- Certificate SHA-256: **AB:2A:CE:5A:9A:33:D2:F9:EC:C1:D3:48:2D:FA:51:58:DD:AE:44:A5:89:79:FA:18:5E:F1:32:96:E0:1D:A0:92**, exact required match.
+- APK identity: **1.0.0 / 15 / com.styl15hh1.rn301controller**; minSdk 26, targetSdk 36.
+- README now describes the current product; five inspected, existing screenshots form its gallery. See [screenshot inventory](screenshots/README.md) for exact files and exclusions. Selected files have no GPS EXIF data.
+- Repository audit found no tracked/unignored keystores, credential files, APKs or matching secret assignments; no private absolute paths were introduced into README/docs. The final APK is ignored.
+- No commit, push, tag or GitHub Release was created. No new physical-hardware verification is claimed.
+- No technical/signing blocker remains. The previously recorded supplied-artwork redistribution question still needs owner resolution before publication.
+
+The records below describe earlier validation stages.
+
+## Signing completed — 2026-09-29
+
+The signing blocker is resolved. Release signing uses only YAMAHA_RELEASE_STORE_FILE, YAMAHA_RELEASE_KEY_ALIAS, YAMAHA_RELEASE_STORE_PASSWORD and YAMAHA_RELEASE_KEY_PASSWORD from the owner's external Gradle configuration. No credentials, aliases or private keystore paths were placed in tracked files. No new key was generated.
+
+- Final clean assembleRelease: BUILD SUCCESSFUL, 42s.
+- Missing-property release check: fails early with a clear property-name-only message, as intended.
+- assembleDebug without release properties: BUILD SUCCESSFUL, 33s.
+- Final APK: app/build/outputs/apk/release/Yamaha-Network-Receiver-Controller-v1.0.0.apk
+- Size: 9,011,407 bytes.
+- apksigner: Verifies; one signer; v2 true; v1/v3/v3.1/v4 false.
+- Certificate SHA-256: AB:2A:CE:5A:9A:33:D2:F9:EC:C1:D3:48:2D:FA:51:58:DD:AE:44:A5:89:79:FA:18:5E:F1:32:96:E0:1D:A0:92 (exact required match).
+- APK metadata: versionName 1.0.0, versionCode 15, application ID com.styl15hh1.rn301controller, minSdk 26.
+- APK remains ignored by Git. No commit, push, tag or GitHub Release was made.
+- The previous full 386-test validation was not repeated. Signing-only build/configuration checks passed.
+- Remaining publication concern: supplied artwork redistribution rights, as documented below.
+
+The existing local build helper deliberately uses an isolated Gradle home without signing credentials. Signed builds must use the owner's global Gradle home instead; do not copy secrets into the repository or helper. Configuration caching was disabled for these signing validation builds.
+
+
+### Initial release preparation record (before signing)
+
+
+**Full milestone result:** 386 tests passed (38 classes), 0 failures/errors/skips. Gradle build, assembleRelease and lint succeeded; separate lintRelease succeeded. Debug/release lint each report 0 errors / 7 existing warnings. All eight locale sets and launcher resources passed validation. Release manifest reports the unchanged package, 1.0.0/code 15, minSdk 26, targetSdk 36.
+
+**Release blockers:** release signingConfig is absent; apksigner confirms the release APK is unsigned (DOES NOT VERIFY). Supplied Spotify/AirPlay/Yamaha artwork redistribution permission is not established by project evidence. No key was generated. No public release or tag was created. Full details, warning inventory, unsigned output path and exact signing requirements: [release preparation](RELEASE_PREPARATION.md).
+
+Version **1.0.0 (15)**, package **com.styl15hh1.rn301controller**. The user approved the current v0.7.7 functionality and visual design as the stable baseline. No new receiver commands or capabilities are introduced.
+
+Later user reports confirm v0.7.5 Power, live rotary Volume, Mute, Favorites/Sources, Spotify playback/metadata, FM/AM Tuner/presets/manual tuning/seek/Auto/Mono/RDS, Net Radio/YTuner aggregation/playback/Stop and reconnection. Subsequent v0.7.7 physical visual feedback and final approval supersede older UI-pending notes. This does not invent new SERVER/DLNA edge-case or unresolved-command physical results.
+
+The alphabet index was removed after physical feedback; current Net Radio uses ordinary scrolling and local Search. Volume/Sources expansion persists. European locales use “Net Radio”; Japanese/Korean retain their translations.
+
+[Release preparation](RELEASE_PREPARATION.md) records current validation/signing blockers. Sections below are historical technical evidence, not the current release designation; earlier pending items are superseded only by explicit later results.
+
+---
+
 # v0.7.6 — UI refinement
 
 VersionName **0.7.6**, versionCode **13**; application ID unchanged.
@@ -22,7 +79,7 @@ Limitations: search covers only the currently loaded menu. The alphabet index ap
 
 Tests selected: V076PresentationTest, V076UiTest, FavoritesTest, MaintenanceUiTest, DailyUsePresentationTest, V074PlayerTest, NetRadioRepositoryTest; the locale-key/format check; the four-Favorites layout test; five existing Home Volume regression cases. An older NET RADIO ordering assertion was updated to the intentional station → artist → song hierarchy.
 
-APK: `D:\Codex\Projects\Yamaha\app\build\outputs\apk\debug\app-debug.apk`.
+APK: `app\build\outputs\apk\debug\app-debug.apk`.
 
 Significant files: AppSettings.kt; ExpandableVolume.kt / ExpandableSources.kt / ReceiverScreen.kt; CompactSourceTile.kt / SourceTiles.kt / QuickSourcesUi.kt; MediaBrowserScreen.kt / RadioMenuList.kt / RadioMenuPresentation.kt / CountryFlags.kt; PlayerScreen.kt / PlayerPresentation.kt; eight strings.xml files, search/clear vector assets, targeted tests and app/build.gradle.kts.
 ---
@@ -41,7 +98,7 @@ VersionName **0.7.5**, versionCode **12**; package **com.styl15hh1.rn301controll
 - Light/dark component renders inspected with a theme Surface and realistic 16 dp phone margins: equal-width Favorites, 68 dp height, legible icons/labels, country flags and scrollable rows, no pagination/depth UI.
 - APK signature: apksigner **Verifies**, **v2**, one signer.
 - aapt: versionName **0.7.5**, versionCode **12**, unchanged package, minSdk26 / targetSdk36.
-- APK: `D:\Codex\Projects\Yamaha\app\build\outputs\apk\debug\app-debug.apk`.
+- APK: `app\build\outputs\apk\debug\app-debug.apk`.
 - Size: **12,586,468 bytes**.
 - SHA-256: **D19CBF903F97B260950465E0C91D57FD3274CA7BE8B35ADF67B419A508FF29F0**.
 - Reports: app/build/reports/tests/testDebugUnitTest/index.html and app/build/reports/lint-results-debug.html.
@@ -85,7 +142,7 @@ VersionName **0.7.4**, versionCode **11**. Package unchanged: **com.styl15hh1.rn
 - All eight locales compile and pass matching-key/format/language-config checks: English, Spanish, German, French, Italian, Polish, Korean, Japanese. ResourceValidationTest: 3/3 passed, including launcher densities.
 - Signature: apksigner **Verifies**, APK Signature Scheme **v2**, one signer.
 - aapt confirms package com.styl15hh1.rn301controller, versionName **0.7.4**, versionCode **11**, minSdk26, targetSdk36.
-- APK: `D:\Codex\Projects\Yamaha\app\build\outputs\apk\debug\app-debug.apk`.
+- APK: `app\build\outputs\apk\debug\app-debug.apk`.
 - Size: **12,760,186 bytes**.
 - SHA-256: **2B7356A865D8CE84356C8EA93DEABE9B1BE105AEA98F468CAC046379E85BAE15**.
 - Test report: app/build/reports/tests/testDebugUnitTest/index.html.
@@ -138,7 +195,7 @@ VersionName **0.7.3**, versionCode **10**. Package **com.styl15hh1.rn301controll
 - Lint: **0 errors, 4 existing warnings**, no new warnings: OldTargetApi, AndroidGradlePluginVersion, InsecureBaseConfiguration, IconXmlAndPng.
 - All eight locale resources compile. ResourceValidationTest: 3 tests pass, covering matching string keys/format arguments, language config and launcher resources.
 - APK signature: apksigner **Verifies**, APK Signature Scheme v2, one signer.
-- APK: `D:\Codex\Projects\Yamaha\app\build\outputs\apk\debug\app-debug.apk`.
+- APK: `app\build\outputs\apk\debug\app-debug.apk`.
 - Size: **12,549,675 bytes**.
 - SHA-256: **B2966E6D9B3EE1D2E34570079053A636E3EA9F431A0C2AE6C28F62E52C747397**.
 - aapt confirms versionName0.7.3/code10, minSdk26, targetSdk36.
@@ -195,7 +252,7 @@ VersionName **0.7.2**, versionCode **9**, package **com.styl15hh1.rn301controlle
 - Lint: **0 errors, 4 existing warnings**: OldTargetApi, AndroidGradlePluginVersion, InsecureBaseConfiguration, IconXmlAndPng. No added warnings.
 - ResourceValidationTest validates all eight locales and format arguments plus launcher resources; Android resource compilation also passed.
 - APK signature: apksigner verify --verbose **Verifies**, APK Signature Scheme v2, one signer.
-- APK: `D:\Codex\Projects\Yamaha\app\build\outputs\apk\debug\app-debug.apk`
+- APK: `app\build\outputs\apk\debug\app-debug.apk`
 - APK size: **12,528,643 bytes**.
 - SHA-256: **B861FBB71CF99FA1F6D232EC5E49F39A4ED1C3BB8E4F5619EB4C4D9C5ECC8F6E**.
 - Manifest checked with aapt: version 0.7.2/code9, minSdk26, targetSdk36.
@@ -248,7 +305,7 @@ Final validation (2026-09-27):
 - Lint: 0 errors, 4 existing warnings: OldTargetApi, AndroidGradlePluginVersion, InsecureBaseConfiguration, IconXmlAndPng. No new warnings. The local Yamaha cleartext policy and adaptive/legacy launcher resources are unchanged.
 - All eight locale resource sets/format arguments and launcher densities pass ResourceValidationTest.
 - APK signature: apksigner verifies APK Signature Scheme v2, one signer.
-- APK: D:\Codex\Projects\Yamaha\app\build\outputs\apk\debug\app-debug.apk
+- APK: app\build\outputs\apk\debug\app-debug.apk
 - Size: 12,695,256 bytes.
 - SHA-256: AC66D04BA21624F75985860405F9F01F393A56D8F08AE4849DA7C4DD9171A166
 - Manifest: com.styl15hh1.rn301controller, versionName 0.7.1, versionCode 8, minSdk 26, targetSdk 36.
@@ -353,7 +410,7 @@ These are JVM/domain/repository/ViewModel/resource tests. No emulator or instrum
 - Lint: **0 errors, 4 existing warnings**, no new warning.
 - APK signature: **Verifies**, scheme **v2**, **one signer**.
 - APK package/version/label confirmed by aapt: com.styl15hh1.rn301controller, 0.7.0 (7), Yamaha Network Receiver Controller.
-- APK: **D:\Codex\Projects\Yamaha\app\build\outputs\apk\debug\app-debug.apk**.
+- APK: **app\build\outputs\apk\debug\app-debug.apk**.
 - Size: **12,496,161 bytes**.
 - SHA-256: **A417E0780124E4E2457E04C4793C60E990B25310A66FC471CFCDD67E3973F6D9**.
 

@@ -61,15 +61,18 @@ internal fun SourceNowPlayingCard(source: String, info: NowPlaying?, error: Stri
         Column(Modifier.fillMaxWidth().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                if (source == "Spotify") Image(painterResource(R.drawable.spotify_wordmark), null,
+                if (source == "Spotify") Image(painterResource(R.drawable.spotify_wordmark), Source(source).localized(),
                     Modifier.width(64.dp).height(24.dp).alpha(ControlPolicy.contentAlpha(enabled))
                         .testTag("spotify_now_playing_artwork"),
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary), contentScale = ContentScale.Fit)
                 else Icon(painterResource(sourceDrawable(source)), null, Modifier.size(24.dp),
                     tint = MaterialTheme.colorScheme.primary)
-                Spacer(Modifier.width(10.dp))
-                Text(Source(source).localized(), Modifier.weight(1f),
-                    style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                if (source == "Spotify") Spacer(Modifier.weight(1f))
+                else {
+                    Spacer(Modifier.width(10.dp))
+                    Text(Source(source).localized(), Modifier.weight(1f),
+                        style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
                 IconButton(onClick = open) {
                     Icon(painterResource(com.styl15hh1.rn301controller.R.drawable.ic_chevron_right), tr(R.string.open_player))
                 }

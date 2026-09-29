@@ -81,11 +81,26 @@ internal fun LargeVolumeValue(value: String) {
     val style = MaterialTheme.typography.displayLarge.copy(
         fontSize = 68.sp, lineHeight = 76.sp, fontWeight = FontWeight.SemiBold)
     BoxWithConstraints(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-        val measured = measurer.measure(value, style = style, softWrap = false, maxLines = 1)
         val available = with(density) { maxWidth.toPx() }
-        val fit = if (measured.size.width > 0) (available / measured.size.width).coerceAtMost(1f) else 1f
-        Text(value, maxLines = 1, softWrap = false,
-            style = style.copy(fontSize = (68 * fit).sp, lineHeight = (76 * fit).sp),
+        val fontSize = remember(value, available, density.fontScale, style, measurer) {
+            fun fits(size: Float) = measurer.measure(value,
+                style = style.copy(fontSize = size.sp, lineHeight = (size * 76 / 68).sp),
+                softWrap = false, maxLines = 1).size.width <= available - 2
+            if (fits(68f)) 68f else {
+                // Android large-font scaling is nonlinear: measure candidates rather than
+                // scaling an sp size by a pixel ratio.
+                var low = 8f
+                var high = 68f
+                repeat(8) {
+                    val candidate = (low + high) / 2
+                    if (fits(candidate)) low = candidate else high = candidate
+                }
+                low
+            }
+        }
+        Text(value, Modifier.fillMaxWidth(), maxLines = 1, softWrap = false,
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+            style = style.copy(fontSize = fontSize.sp, lineHeight = (fontSize * 76 / 68).sp),
             color = MaterialTheme.colorScheme.onSurface)
     }
 }

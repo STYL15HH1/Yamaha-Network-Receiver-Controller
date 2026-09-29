@@ -5,14 +5,25 @@ local.properties
 **/build/
 .work/
 *.iml
-*.jks
 
-# Local diagnostic logs
+# Signing material and local credentials (never commit)
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.key
+*.pem
+keystore.properties
+signing.properties
+.env
+.env.*
+
+# Generated distribution artifacts
+*.apk
+*.aab
+*.apks
+
+# Local diagnostics and original supplied artwork
 *.log
 logcat-*.txt
-
-# Local source artwork
-Image/
-
-# Local source artwork
 Image/

@@ -44,7 +44,7 @@ class VolumeValuePolishTest {
         for(fontScale in listOf(1f,2f)) {
             compose.runOnIdle { value="100";scale=fontScale }
             val result=layout()
-            assertFalse(result.hasVisualOverflow)
+            assertFalse("scale=$fontScale size="+result.size+" width="+result.multiParagraph.width+" height="+result.multiParagraph.height+" font="+result.layoutInput.style.fontSize+" constraints="+result.layoutInput.constraints, result.hasVisualOverflow)
             assertEquals(1,result.lineCount)
             compose.onNodeWithText("100").assertIsDisplayed()
         }
