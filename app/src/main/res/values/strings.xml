@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Yamaha Network Receiver Controller</string>
+    <string name="app_name" translatable="false">Yamaha Receiver Controller</string>
     <string name="connected">Connected</string>
     <string name="connected_at">Connected · %1$s</string>
     <string name="connecting">Connecting…</string>

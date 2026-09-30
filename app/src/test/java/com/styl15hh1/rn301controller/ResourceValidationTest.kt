@@ -16,6 +16,16 @@ class ResourceValidationTest {
             node.attributes.getNamedItem("name").nodeValue to node.textContent
         }
     }
+    @Test fun rebrandedNameIsSharedByLauncherAndAllLocales() {
+        assertEquals("Yamaha Receiver Controller", strings("values").getValue("app_name"))
+        for (language in listOf("es", "de", "fr", "it", "pl", "ko", "ja")) {
+            assertFalse(language, strings("values-$language").containsKey("app_name"))
+        }
+        val manifest = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+            .parse(File("src/main/AndroidManifest.xml"))
+        val application = manifest.getElementsByTagName("application").item(0)
+        assertEquals("@string/app_name", application.attributes.getNamedItem("android:label").nodeValue)
+    }
     @Test fun eightResourceSetsHaveMatchingKeysAndFormatArguments() {
         val english = strings("values").filterKeys {
             !it.startsWith("language_") && it !in setOf("app_name","cd","spotify","airplay","github")
