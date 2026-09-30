@@ -39,7 +39,7 @@
     <string name="about">앱 정보</string>
     <string name="version">버전: %1$s</string>
     <string name="author">제작자</string>
-    <string name="unofficial">Yamaha 네트워크 리시버용 비공식 컨트롤러입니다.</string>
+    <string name="unofficial">독립 오픈 소스 프로젝트입니다. Yamaha Corporation과 제휴 관계가 없으며 공식 승인을 받지 않았습니다.</string>
     <string name="connected_receiver">연결된 리시버</string>
     <string name="discovery">자동 검색</string>
     <string name="find_receiver">로컬 네트워크에서 Yamaha 리시버를 찾습니다.</string>

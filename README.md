@@ -1,27 +1,27 @@
-# Yamaha Network Receiver Controller
+# Yamaha Receiver Controller
 
-A modern native Android controller for the **Yamaha R-N301**. Control your receiver directly over its local Yamaha HTTP/XML interface—without an application cloud backend, Yamaha account, or Spotify account integration in the app.
+A native **Android controller for compatible Yamaha network receivers**, built around the **Yamaha legacy XML API**. **Yamaha R-N301** is the primary physically verified receiver. Control volume, sources, DLNA media and Internet Radio directly through the receiver, without an application cloud backend, Yamaha account or Spotify account integration in the app.
 
 **Stable version: v1.1.0 · Android 8.0+ · Eight languages · MIT**
 
-[Download from GitHub Releases](https://github.com/STYL15HH1/Yamaha-Network-Receiver-Controller/releases) · [Release notes](docs/RELEASE_NOTES_v1.1.0.md) · [Protocol documentation](docs/YAMAHA_PROTOCOL.md)
+[Download from GitHub Releases](https://github.com/STYL15HH1/Yamaha-Receiver-Controller/releases) · [Release notes](docs/RELEASE_NOTES_v1.1.0.md) · [Protocol documentation](docs/YAMAHA_PROTOCOL.md)
 
-**Unofficial project:** this is an independent community project, not affiliated with or endorsed by Yamaha.
+**Independent open-source project. Not affiliated with or endorsed by Yamaha Corporation.**
 
 ## Screenshots
 
 <table>
 <tr>
-  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093550_Yamaha%20Network%20Receiver%20Controller.jpg" width="220" alt="Home &amp; rotary volume"><br><strong>Home &amp; rotary volume</strong></td>
-  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093608_Yamaha%20Network%20Receiver%20Controller.jpg" width="220" alt="Tuner &amp; presets"><br><strong>Tuner &amp; presets</strong></td>
-  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093618_Yamaha%20Network%20Receiver%20Controller.jpg" width="220" alt="Tuner Now Playing"><br><strong>Tuner Now Playing</strong></td>
-  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093638_Yamaha%20Network%20Receiver%20Controller.jpg" width="220" alt="Source selection"><br><strong>Source selection</strong></td>
+  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093550_Yamaha%20Receiver%20Controller.jpg" width="220" alt="Home &amp; rotary volume"><br><strong>Home &amp; rotary volume</strong></td>
+  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093608_Yamaha%20Receiver%20Controller.jpg" width="220" alt="Tuner &amp; presets"><br><strong>Tuner &amp; presets</strong></td>
+  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093618_Yamaha%20Receiver%20Controller.jpg" width="220" alt="Tuner Now Playing"><br><strong>Tuner Now Playing</strong></td>
+  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093638_Yamaha%20Receiver%20Controller.jpg" width="220" alt="Source selection"><br><strong>Source selection</strong></td>
 </tr>
 <tr>
-  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093648_Yamaha%20Network%20Receiver%20Controller.jpg" width="220" alt="Application language"><br><strong>Application language</strong></td>
-  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093705_Yamaha%20Network%20Receiver%20Controller.jpg" width="220" alt="Net Radio catalogue"><br><strong>Net Radio catalogue</strong></td>
-  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093717_Yamaha%20Network%20Receiver%20Controller.jpg" width="220" alt="Four Favorites"><br><strong>Four Favorites</strong></td>
-  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093727_Yamaha%20Network%20Receiver%20Controller.jpg" width="220" alt="Compact Home &amp; Spotify"><br><strong>Compact Home &amp; Spotify</strong></td>
+  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093648_Yamaha%20Receiver%20Controller.jpg" width="220" alt="Application language"><br><strong>Application language</strong></td>
+  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093705_Yamaha%20Receiver%20Controller.jpg" width="220" alt="Net Radio catalogue"><br><strong>Net Radio catalogue</strong></td>
+  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093717_Yamaha%20Receiver%20Controller.jpg" width="220" alt="Four Favorites"><br><strong>Four Favorites</strong></td>
+  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093727_Yamaha%20Receiver%20Controller.jpg" width="220" alt="Compact Home &amp; Spotify"><br><strong>Compact Home &amp; Spotify</strong></td>
 </tr>
 </table>
 
@@ -55,11 +55,11 @@ Appearance supports **System / Light / Dark**, with saved preferences.
 
 **Yamaha R-N301 is the primary and physically tested target.** The application communicates through Yamaha's legacy local XML control endpoint: `/YamahaRemoteControl/ctrl`.
 
-Other Yamaha network receivers exposing the same legacy XML API may be partially or fully compatible. Yamaha R-N500 and selected older RX-V and RX-A receivers are potential compatibility candidates only; they are not claimed as supported, verified or tested.
+Other Yamaha network receivers exposing the same legacy XML API may be partially or fully compatible. Yamaha R-N500 and selected older RX-V and RX-A receivers are potential compatibility candidates only; they are not claimed as supported, verified or tested. The current connection check still requires an R-N301 model identification; this rebranding does not broaden device acceptance.
 
 Compatibility can vary because receivers expose different inputs, tuner capabilities, network services and XML command trees.
 
-If you test another receiver, please [open a GitHub issue](https://github.com/STYL15HH1/Yamaha-Network-Receiver-Controller/issues) with the exact Yamaha model, working features and non-working features.
+If you test another receiver, please [open a GitHub issue](https://github.com/STYL15HH1/Yamaha-Receiver-Controller/issues) with the exact Yamaha model, working features and non-working features.
 
 ### Tested devices
 
@@ -85,8 +85,8 @@ Manual connection is available when the network blocks multicast discovery.
 
 ## Installation
 
-1. Open [GitHub Releases](https://github.com/STYL15HH1/Yamaha-Network-Receiver-Controller/releases).
-2. Download the signed **Yamaha-Network-Receiver-Controller-v1.1.0.apk** release asset.
+1. Open [GitHub Releases](https://github.com/STYL15HH1/Yamaha-Receiver-Controller/releases).
+2. Download the signed **Yamaha-Receiver-Controller-v1.1.0.apk** release asset.
 3. Open the APK on your phone and, when prompted, allow installation from the trusted browser or file manager.
 4. Discover your receiver or enter its address in Settings.
 

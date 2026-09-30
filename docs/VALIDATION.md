@@ -1,3 +1,44 @@
+# Yamaha Receiver Controller rebranding validation - 2026-09-30
+
+The public project and Android application label are now **Yamaha Receiver Controller**. Current repository links target **STYL15HH1/Yamaha-Receiver-Controller**. Both v1.0.0 and v1.1.0 release-note texts are prepared for reissue under the new name. The v1.0.0 APK has not been rebuilt.
+
+The README presents an Android controller for compatible Yamaha network receivers using the Yamaha legacy XML API, with R-N301 as the primary physically verified target. R-N500 and selected older RX-V/RX-A models remain untested potential candidates. The unchanged connection check still requires R-N301 identification; rebranding does not broaden accepted devices.
+
+The English disclaimer is: "Independent open-source project. Not affiliated with or endorsed by Yamaha Corporation." About translations were updated in all eight languages. The manifest and About page continue using the shared app_name resource.
+
+## Validation
+
+- Focused BrandingTest + ResourceValidationTest: **6 passed**.
+- Full unit suite: **405 passed**, 42 classes, zero failures/errors/skips.
+- Signed release build and debug/release lint: **BUILD SUCCESSFUL**, 56s.
+- Each lint variant: **0 errors / 7 existing warnings**, no new warnings or suppressions. Existing warnings are OldTargetApi, AndroidGradlePluginVersion, InsecureBaseConfiguration, three UnusedResources, and IconXmlAndPng.
+- Package **com.styl15hh1.rn301controller**, versionName **1.1.0**, versionCode **16**.
+- All packaged application-label locale variants report **Yamaha Receiver Controller**.
+- Application build/signing configuration, manifest, production Kotlin, protocol/network behavior and control functionality are unchanged. Only the root Gradle project display name changed.
+- All eight screenshots were renamed for the brand and remain byte-identical to their originals. Gallery and inventory links resolve.
+- No old-name text remains in tracked/unignored public source, documentation, release notes or screenshot references.
+- git diff --check: PASS.
+
+## New signed candidate
+
+**app/build/outputs/apk/release/Yamaha-Receiver-Controller-v1.1.0.apk**
+
+- Size: **9,009,979 bytes**.
+- APK SHA-256: **49A355B8551919F74D736E1B50A2CB31C60BC9ED6FD36EA2837EC088A32C98AF**.
+- apksigner: **Verifies**, exactly one signer, v2 present; v1/v3/v3.1/v4 absent.
+- Certificate SHA-256: **AB:2A:CE:5A:9A:33:D2:F9:EC:C1:D3:48:2D:FA:51:58:DD:AE:44:A5:89:79:FA:18:5E:F1:32:96:E0:1D:A0:92**, unchanged.
+- APK is not debuggable and is ignored by Git.
+
+Existing release artifacts were copied to the ignored .work/rebranding-preserved-20260930 directory before building and verified against their recorded SHA-256 values. The previous named v1.1.0 APK is also retained in its original output location. Its old branding and the backup manifest references intentionally remain local only. Git history and generated tool caches were not rewritten.
+
+## Remaining manual release work
+
+Physically test the new signed v1.1.0 candidate on the Yamaha R-N301 before replacing any public artifact. Check the launcher/About label, upgrade over the same-signed installation, saved settings and receiver controls. Preserve old APKs until replacement verification and physical acceptance succeed.
+
+After v1.1.0 acceptance, separately prepare, sign, verify and physically test the v1.0.0 reissue as Yamaha-Receiver-Controller-v1.0.0.apk. The owner will later update public repository/release titles, descriptions and assets manually. No commit, tag, push, upload, deletion or GitHub Release modification was performed during this task.
+
+All artifact sizes/checksums in the sections below are historical pre-rebranding build evidence, not measurements of the new candidate.
+
 # v1.1.0 final signed release validation - 2026-09-30
 
 ## Identity and physical status
@@ -35,7 +76,7 @@ Focused command: testDebugUnitTest with V110*, Server*Test, NetRadio*Test, V075B
 
 ## Exact artifact for testing and publication
 
-File: **app/build/outputs/apk/release/Yamaha-Network-Receiver-Controller-v1.1.0.apk**
+File: **pre-rebranding signed v1.1.0 APK (historical artifact)**
 
 - Size: **9,009,615 bytes**.
 - APK SHA-256: **24DE6828EFBDB9974CA613AA2B1D0B70F58B9E1CDC38F0C0593C6E5B7A41383B**.
@@ -66,7 +107,7 @@ The Spotify Now Playing header retains the existing wordmark and accessible sour
 - All four resource validation tests pass, including all eight locales and launcher densities.
 - Gradle testDebugUnitTest assembleRelease lint lintRelease: **BUILD SUCCESSFUL**, 3m 44s.
 - Debug and release lint: **0 errors / 7 existing warnings** each; no new suppressions.
-- Final APK: app/build/outputs/apk/release/Yamaha-Network-Receiver-Controller-v1.0.0.apk; **9,011,407 bytes**.
+- Final APK: pre-rebranding signed v1.0.0 APK (historical artifact); **9,011,407 bytes**.
 - apksigner: **Verifies**, one signer; v2 true; v1/v3/v3.1/v4 false.
 - Certificate SHA-256: **AB:2A:CE:5A:9A:33:D2:F9:EC:C1:D3:48:2D:FA:51:58:DD:AE:44:A5:89:79:FA:18:5E:F1:32:96:E0:1D:A0:92**, exact required match.
 - APK identity: **1.0.0 / 15 / com.styl15hh1.rn301controller**; minSdk 26, targetSdk 36.
@@ -84,7 +125,7 @@ The signing blocker is resolved. Release signing uses only YAMAHA_RELEASE_STORE_
 - Final clean assembleRelease: BUILD SUCCESSFUL, 42s.
 - Missing-property release check: fails early with a clear property-name-only message, as intended.
 - assembleDebug without release properties: BUILD SUCCESSFUL, 33s.
-- Final APK: app/build/outputs/apk/release/Yamaha-Network-Receiver-Controller-v1.0.0.apk
+- Final APK: pre-rebranding signed v1.0.0 APK (historical artifact)
 - Size: 9,011,407 bytes.
 - apksigner: Verifies; one signer; v2 true; v1/v3/v3.1/v4 false.
 - Certificate SHA-256: AB:2A:CE:5A:9A:33:D2:F9:EC:C1:D3:48:2D:FA:51:58:DD:AE:44:A5:89:79:FA:18:5E:F1:32:96:E0:1D:A0:92 (exact required match).
@@ -417,7 +458,7 @@ Changed production files: RotaryVolumeControl.kt, new RotaryTouchSession.kt, Vol
 ---
 # v0.7 validation report
 
-Validated on Windows on 2026-09-27. Package: com.styl15hh1.rn301controller. Application name: Yamaha Network Receiver Controller. Version: **0.7.0 (7)**. minSdk 26, targetSdk 36, compileSdk 37; existing dependencies and Android permissions unchanged.
+Validated on Windows on 2026-09-27. Package: com.styl15hh1.rn301controller. Application label: pre-rebranding label (historical build). Version: **0.7.0 (7)**. minSdk 26, targetSdk 36, compileSdk 37; existing dependencies and Android permissions unchanged.
 
 ## Implementation
 
@@ -467,7 +508,7 @@ These are JVM/domain/repository/ViewModel/resource tests. No emulator or instrum
 - Tests: **240 passed**, zero failures/errors.
 - Lint: **0 errors, 4 existing warnings**, no new warning.
 - APK signature: **Verifies**, scheme **v2**, **one signer**.
-- APK package/version/label confirmed by aapt: com.styl15hh1.rn301controller, 0.7.0 (7), Yamaha Network Receiver Controller.
+- APK package/version/label confirmed by aapt: com.styl15hh1.rn301controller, 0.7.0 (7), historical pre-rebranding label.
 - APK: **app\build\outputs\apk\debug\app-debug.apk**.
 - Size: **12,496,161 bytes**.
 - SHA-256: **A417E0780124E4E2457E04C4793C60E990B25310A66FC471CFCDD67E3973F6D9**.

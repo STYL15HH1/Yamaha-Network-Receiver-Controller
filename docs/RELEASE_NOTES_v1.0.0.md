@@ -1,4 +1,4 @@
-# Yamaha Network Receiver Controller v1.0.0
+# Yamaha Receiver Controller v1.0.0
 
 The first stable release of a native Android controller for the **Yamaha R-N301**, communicating directly over the receiver's local HTTP/XML API.
 
@@ -15,9 +15,11 @@ The first stable release of a native Android controller for the **Yamaha R-N301*
 - Eight languages, System default language, and System / Light / Dark appearance.
 - No analytics, advertising, telemetry, app cloud backend or app-managed Yamaha/Spotify authentication.
 
+This release text is prepared for the rebranded reissue. The replacement v1.0.0 APK has not been rebuilt or published yet.
+
 ## Installation
 
-Requires **Android 8.0+** and a Yamaha R-N301 reachable on the local network. Download the signed **Yamaha-Network-Receiver-Controller-v1.0.0.apk** from the release assets.
+Requires **Android 8.0+** and a Yamaha R-N301 reachable on the local network. Download the signed **Yamaha-Receiver-Controller-v1.0.0.apk** from the release assets.
 
 Android may warn about installations outside Google Play. Verify the source and review warnings; do not disable Play Protect globally. An existing installation signed with a different development key must be uninstalled before installing the production APK, removing its local preferences.
 
@@ -30,4 +32,4 @@ AB:2A:CE:5A:9A:33:D2:F9:EC:C1:D3:48:2D:FA:51:58:DD:AE:44:A5:89:79:FA:18:5E:F1:32
 
 Other Yamaha models are not guaranteed. Volume is native, not inferred dB. AirPlay supports input selection only. Spotify Stop/Shuffle/Repeat, preset storage, tone/speaker/Sleep controls and direct radio stream URLs are not implemented. Receiver services determine catalogue/media availability and metadata; concurrent controllers can invalidate browsing state. Net Radio search is limited to the loaded menu and traversal is bounded.
 
-This is an unofficial community project, not affiliated with or endorsed by Yamaha. See the project README and third-party notices for licensing and attribution.
+Independent open-source project. Not affiliated with or endorsed by Yamaha Corporation. See the project README and third-party notices for licensing and attribution.

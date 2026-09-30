@@ -39,7 +39,7 @@
     <string name="about">Informazioni</string>
     <string name="version">Versione: %1$s</string>
     <string name="author">Creato da</string>
-    <string name="unofficial">Controller non ufficiale per ricevitori di rete Yamaha.</string>
+    <string name="unofficial">Progetto open source indipendente. Non affiliato né approvato da Yamaha Corporation.</string>
     <string name="connected_receiver">Ricevitore connesso</string>
     <string name="discovery">Ricerca automatica</string>
     <string name="find_receiver">Cerca un ricevitore Yamaha nella rete locale.</string>

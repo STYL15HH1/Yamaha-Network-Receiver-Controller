@@ -39,7 +39,7 @@
     <string name="about">O aplikacji</string>
     <string name="version">Wersja: %1$s</string>
     <string name="author">Autor</string>
-    <string name="unofficial">Nieoficjalny kontroler odbiorników sieciowych Yamaha.</string>
+    <string name="unofficial">Niezależny projekt open source. Nie jest powiązany z Yamaha Corporation ani przez nią rekomendowany.</string>
     <string name="connected_receiver">Połączony odbiornik</string>
     <string name="discovery">Automatyczne wykrywanie</string>
     <string name="find_receiver">Znajdź odbiornik Yamaha w sieci lokalnej.</string>

@@ -8,7 +8,7 @@ The Spotify Now Playing header retains the existing wordmark and accessible sour
 - All four resource validation tests pass, including all eight locales and launcher densities.
 - Gradle testDebugUnitTest assembleRelease lint lintRelease: **BUILD SUCCESSFUL**, 3m 44s.
 - Debug and release lint: **0 errors / 7 existing warnings** each; no new suppressions.
-- Final APK: app/build/outputs/apk/release/Yamaha-Network-Receiver-Controller-v1.0.0.apk; **9,011,407 bytes**.
+- Final APK: pre-rebranding signed v1.0.0 APK (historical artifact); **9,011,407 bytes**.
 - apksigner: **Verifies**, one signer; v2 true; v1/v3/v3.1/v4 false.
 - Certificate SHA-256: **AB:2A:CE:5A:9A:33:D2:F9:EC:C1:D3:48:2D:FA:51:58:DD:AE:44:A5:89:79:FA:18:5E:F1:32:96:E0:1D:A0:92**, exact required match.
 - APK identity: **1.0.0 / 15 / com.styl15hh1.rn301controller**; minSdk 26, targetSdk 36.
@@ -26,7 +26,7 @@ The signing blocker is resolved. Release signing uses only YAMAHA_RELEASE_STORE_
 - Final clean assembleRelease: BUILD SUCCESSFUL, 42s.
 - Missing-property release check: fails early with a clear property-name-only message, as intended.
 - assembleDebug without release properties: BUILD SUCCESSFUL, 33s.
-- Final APK: app/build/outputs/apk/release/Yamaha-Network-Receiver-Controller-v1.0.0.apk
+- Final APK: pre-rebranding signed v1.0.0 APK (historical artifact)
 - Size: 9,011,407 bytes.
 - apksigner: Verifies; one signer; v2 true; v1/v3/v3.1/v4 false.
 - Certificate SHA-256: AB:2A:CE:5A:9A:33:D2:F9:EC:C1:D3:48:2D:FA:51:58:DD:AE:44:A5:89:79:FA:18:5E:F1:32:96:E0:1D:A0:92 (exact required match).
@@ -93,7 +93,7 @@ The owner must supply/choose:
 4. A release signingConfig wired to buildTypes.release in Gradle, using the supplied key and secrets.
 5. Long-term key custody and backup so future in-place upgrades use the same signing identity.
 
-Once configured: rebuild assembleRelease, verify the signature/certificate and package/version, and copy the signed APK to an ignored distribution location as **Yamaha-Network-Receiver-Controller-v1.0.0.apk**. Do not substitute the debug APK. Existing debug-key installations require uninstall/reinstall when switching signing identity; local preferences are then removed.
+Once configured: rebuild assembleRelease, verify the signature/certificate and package/version, and copy the signed APK to an ignored distribution location as **Yamaha-Receiver-Controller-v1.0.0.apk**. Do not substitute the debug APK. Existing debug-key installations require uninstall/reinstall when switching signing identity; local preferences are then removed.
 
 ## Public repository audit
 

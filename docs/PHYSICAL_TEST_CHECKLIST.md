@@ -154,7 +154,7 @@ Retest on the real Samsung phone and R-N301:
 11. Recheck Tuner/presets/manual tuning, Spotify controls/metadata, working NET RADIO browsing/playback, Settings/languages/About and background/foreground polling.
 12. SERVER core browsing and end-to-end playback are now user-confirmed PASS (2026-09-30); new v1.1.0 browser UX checks remain pending.
 No v0.7.1 physical PASS is claimed.
-# Physical validation: Yamaha Network Receiver Controller v0.7
+# Physical validation: Yamaha Receiver Controller v0.7
 
 ## Latest physical results supplied for v0.7
 

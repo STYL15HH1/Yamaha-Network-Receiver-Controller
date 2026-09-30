@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Yamaha Network Receiver Controller</string>
+    <string name="app_name" translatable="false">Yamaha Receiver Controller</string>
     <string name="connected">Connected</string>
     <string name="connected_at">Connected · %1$s</string>
     <string name="connecting">Connecting…</string>
@@ -44,7 +44,7 @@
     <string name="version">Version: %1$s</string>
     <string name="author">Created by</string>
     <string name="github" translatable="false">GitHub</string>
-    <string name="unofficial">Unofficial controller for Yamaha network receivers.</string>
+    <string name="unofficial">Independent open-source project. Not affiliated with or endorsed by Yamaha Corporation.</string>
     <string name="connected_receiver">Connected receiver</string>
     <string name="discovery">Automatic discovery</string>
     <string name="find_receiver">Find a Yamaha receiver on your local network.</string>

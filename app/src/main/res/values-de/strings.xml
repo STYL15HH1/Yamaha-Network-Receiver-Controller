@@ -39,7 +39,7 @@
     <string name="about">Über die App</string>
     <string name="version">Version: %1$s</string>
     <string name="author">Entwickelt von</string>
-    <string name="unofficial">Inoffizielle Steuerung für Yamaha-Netzwerkreceiver.</string>
+    <string name="unofficial">Unabhängiges Open-Source-Projekt. Nicht mit Yamaha Corporation verbunden oder von ihr unterstützt.</string>
     <string name="connected_receiver">Verbundener Receiver</string>
     <string name="discovery">Automatische Suche</string>
     <string name="find_receiver">Yamaha-Receiver im lokalen Netzwerk suchen.</string>

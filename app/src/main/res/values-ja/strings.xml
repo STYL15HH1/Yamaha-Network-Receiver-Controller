@@ -39,7 +39,7 @@
     <string name="about">このアプリについて</string>
     <string name="version">バージョン: %1$s</string>
     <string name="author">作者</string>
-    <string name="unofficial">Yamahaネットワークレシーバー用の非公式コントローラーです。</string>
+    <string name="unofficial">独立したオープンソースプロジェクトです。Yamaha Corporationとの提携関係はなく、同社の承認も受けていません。</string>
     <string name="connected_receiver">接続中のレシーバー</string>
     <string name="discovery">自動検出</string>
     <string name="find_receiver">ローカルネットワーク内のYamahaレシーバーを検索します。</string>

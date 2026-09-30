@@ -39,7 +39,7 @@
     <string name="about">À propos</string>
     <string name="version">Version : %1$s</string>
     <string name="author">Créé par</string>
-    <string name="unofficial">Télécommande non officielle pour les récepteurs réseau Yamaha.</string>
+    <string name="unofficial">Projet open source indépendant. Sans affiliation ni approbation de Yamaha Corporation.</string>
     <string name="connected_receiver">Récepteur connecté</string>
     <string name="discovery">Détection automatique</string>
     <string name="find_receiver">Rechercher un récepteur Yamaha sur le réseau local.</string>
