@@ -23,8 +23,8 @@ class YamahaRepository(
     val status: StateFlow<ReceiverStatus> = mutableStatus.asStateFlow()
     private val radioPages = NetRadioMediaBrowser(transport, parser, log)
     private val browsers = mapOf(
-        "SERVER" to ServerMediaBrowser(transport, parser),
-        "NET RADIO" to AggregatingRadioBrowser(radioPages)
+        "SERVER" to AggregatingMediaBrowser(ServerMediaBrowser(transport, parser)),
+        "NET RADIO" to AggregatingMediaBrowser(radioPages)
     )
     private val browserApi: YamahaMediaBrowser get() = browsers.getValue(browser.value.source)
     private val mutableBrowser = MutableStateFlow(BrowserState())
@@ -254,7 +254,7 @@ class YamahaRepository(
     }
     private suspend fun browserOperation(
         source: String = browser.value.source,
-        timeoutMs: Long = if (source == "NET RADIO") 90_000 else 15_000,
+        timeoutMs: Long = 90_000,
         block: suspend () -> MediaList
     ) = lock.withLock {
         withContext(io) {

@@ -10,7 +10,7 @@ import org.junit.Test
 
 class V075BrowserTest {
     private fun browser(fake:NetRadioFake, limit:Int=64, timeout:Long=90_000) =
-        AggregatingRadioBrowser(NetRadioMediaBrowser(fake,YamahaXmlParser()),limit,timeout)
+        AggregatingMediaBrowser(NetRadioMediaBrowser(fake,YamahaXmlParser()),limit,timeout)
     private fun populated(count:Int)=NetRadioFake().apply {
         tree[""]=(1..count).map{"Station $it" to "Item"}
     }

@@ -130,8 +130,6 @@
     <string name="application_language">Application language</string>
     <string name="system_default">System default</string>
     <string name="player_inactive">No supported player source is active.</string>
-    <string name="menu_level">Menu level %1$d</string>
-    <string name="browser_home">Home</string>
     <string name="refresh">Refresh</string>
     <string name="loading_media">Loading media…</string>
     <string name="no_media_servers">No media servers found.</string>
@@ -144,9 +142,6 @@
     <string name="browser_failed">Unable to load this folder. The media server may be unavailable.</string>
     <string name="open_browser_hint">Refresh to load the receiver menu.</string>
     <string name="open_folder">Open folder</string>
-    <string name="browser_page">Page %1$d of %2$d</string>
-    <string name="previous_page">Previous page</string>
-    <string name="next_page">Next page</string>
     <string name="loading_radio">Loading Net Radio…</string>
     <string name="no_stations">No stations available.</string>
     <string name="radio_failed">Unable to load this radio directory.</string>
@@ -154,11 +149,9 @@
     <string name="radio_timeout">Net Radio took too long to respond. Try again.</string>
     <string name="radio_path_missing">Station path is no longer available.</string>
     <string name="radio_path_ambiguous">Station path is ambiguous. No station was selected.</string>
-    <string name="radio_limit">Navigation safety limit reached.</string>
     <string name="radio_playback_failed">Unable to confirm station playback.</string>
     <string name="radio_inactive">Select Net Radio to browse.</string>
     <string name="radio_open_hint">Open Net Radio to load its menu.</string>
-    <string name="browser_path">Path: %1$s</string>
     <string name="rotary_volume">Rotary volume</string>
     <string name="rotate_hint">Rotate clockwise to increase, counter-clockwise to decrease</string>
     <string name="quick_sources">Favorite Sources</string>
@@ -186,10 +179,13 @@
     <string name="collapse_volume">Collapse volume</string>
     <string name="muted">Muted</string>
     <string name="unmuted">Unmuted</string>
-    <string name="radio_home">Net Radio home</string>
     <string name="search">Search</string>
     <string name="search_countries">Search countries</string>
     <string name="search_stations">Search stations</string>
     <string name="no_results">No results</string>
     <string name="clear_search">Clear search</string>
+    <string name="app_home">App Home</string>
+    <string name="server_root">Server root</string>
+    <string name="radio_root">Radio root</string>
+    <string name="browser_limit">The menu exceeds the safe loading limit. Open a smaller directory.</string>
 </resources>

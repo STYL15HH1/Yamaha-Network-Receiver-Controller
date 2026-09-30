@@ -1,3 +1,26 @@
+# v1.1.0 physical validation
+
+## Confirmed hardware findings - 2026-09-30
+
+User-confirmed Yamaha R-N301 PASS: DLNA server discovery through the receiver, SERVER browsing, multi-level directory navigation, folders, track selection and actual end-to-end receiver playback. This supersedes earlier SERVER physical-pending notes. It does not mark every playback control, metadata edge case or new v1.1.0 behavior physically verified.
+
+## Test the exact signed v1.1.0 APK
+
+Use the APK and SHA-256 recorded in VALIDATION.md. After successful testing, publish that same file without rebuilding.
+
+- [ ] Browse SERVER lists of 0, 1, 8, 9, 16, 17 and many entries. Confirm one continuous list with no menu-level/page controls.
+- [ ] Select folders and tracks from early, middle and final windows, including duplicate names; verify correct selection and playback.
+- [ ] Use local Search and Clear; select a filtered track. Search must not alter the receiver menu until selection.
+- [ ] Test SERVER Back, Server root and Refresh; slow/busy/unavailable media and stale menus must terminate safely.
+- [ ] App Home is absent on Receiver and visible on other screens. It returns directly without changing input, playback or receiver catalogue location.
+- [ ] Distinguish App Home from Server root / Radio root by icon and spoken accessibility label.
+- [ ] Regress Net Radio aggregation, local Search, station selection, Radio root, Back, Refresh, Now Playing and Stop.
+- [ ] Retain SERVER Receiver / Now Playing navigation, metadata and Play/Pause/Stop/Previous/Next behavior.
+- [ ] Check all eight languages, larger font sizes and disconnected states.
+- [ ] Capture a new SERVER browser image and replace the Net Radio and other non-Home screenshots to show the new header/root actions. Keep existing captures until replacements are supplied.
+
+Earlier milestone records follow.
+
 # v1.0.0 release baseline
 
 Version **1.0.0 (15)**, package **com.styl15hh1.rn301controller**. The user approved the current v0.7.7 functionality and visual design as the stable baseline. No new receiver commands or capabilities are introduced.
@@ -129,7 +152,7 @@ Retest on the real Samsung phone and R-N301:
 9. Three typical favorites fit horizontally at normal text size; larger text wraps accessibly. Spotify branding dims when unavailable in both themes.
 10. Full Sources starts collapsed beneath Now Playing; expand, select an input, collapse, leave/re-enter Home and confirm it resets collapsed.
 11. Recheck Tuner/presets/manual tuning, Spotify controls/metadata, working NET RADIO browsing/playback, Settings/languages/About and background/foreground polling.
-12. SERVER remains pending until a DLNA server is available; no new physical PASS is claimed.
+12. SERVER core browsing and end-to-end playback are now user-confirmed PASS (2026-09-30); new v1.1.0 browser UX checks remain pending.
 No v0.7.1 physical PASS is claimed.
 # Physical validation: Yamaha Network Receiver Controller v0.7
 
@@ -142,7 +165,7 @@ Yamaha/vTuner catalogue/basic browser operation: **PASS**.
 NET RADIO station playback: **PASS**.
 The physical receiver currently reaches its Yamaha/vTuner service. This does not verify every pagination/path/slow-service/metadata/Stop edge case in the historical checklist below.
 
-SERVER: **IMPLEMENTED / UNIT TESTED / PHYSICAL PENDING**, because no DLNA music server is configured. Neither PASS nor FAIL.
+SERVER: **VERIFIED** for receiver-mediated discovery, browsing, multi-level folders, track selection and end-to-end playback (user report, 2026-09-30).
 
 ## v0.7 acceptance — new UX physically pending
 
@@ -191,7 +214,7 @@ Install version 0.7.0 (7) over the existing signed debug build.
 - Empty stopped/unknown player is a small row; full player remains accessible.
 - Tuner shows station when available, frequency and current preset.
 - Background/Settings stop unnecessary player/tuner reads.
-- SERVER presentation may be inspected, but actual browsing/playback stays PENDING until a DLNA server is available.
+- SERVER actual browsing and playback are now user-confirmed PASS (2026-09-30); the new browser presentation requires v1.1.0 acceptance.
 
 Record phone/Android version, firmware, rotary sensitivity preference, haptic feel, configured-Max readback, language/theme and any failures.
 
@@ -226,7 +249,7 @@ v0.4 UI issues reported for this milestone: Spotify artwork inset/outline; Setti
 - Spotify source and clean replacement artwork: **PASS**. Artwork was slightly large; v0.6 reduces display size by 18%, pending visual verification.
 - AirPlay artwork rendering: **PASS**. Duplicate embedded/generic label observed; v0.6 uses a symbol-only derived resource, pending visual verification.
 - Settings gear visibility and navigation: **PASS**.
-- **SERVER: PENDING**, because no DLNA music server is configured. Neither PASS nor FAIL.
+- **SERVER: VERIFIED** for core browsing and end-to-end playback (user report, 2026-09-30).
 - These findings do not verify Spotify playback commands, automatic tuner seek, runtime locale switching, or new NET RADIO behavior.
 
 ## Historical v0.6 acceptance — basic operation and UI now PASS; unreported edge cases pending
@@ -275,7 +298,7 @@ Install 0.6.0 (6). Record phone/Android version, receiver firmware and service a
 
 ## Historical v0.5 implementation checklist
 
-Artwork rendering and gear/navigation items below are superseded by the PASS results above; additional theme/locale/runtime checks remain pending. SERVER acceptance remains pending for lack of a DLNA server.
+Artwork rendering and gear/navigation items below are superseded by the PASS results above; additional theme/locale/runtime checks remain pending. SERVER core discovery, browsing and end-to-end playback are now user-confirmed PASS (2026-09-30); unreported edge cases remain pending.
 
 No SERVER state-changing requests were issued to the real receiver during this milestone. Protocol evidence comes from the inspected references and previously captured receiver-served controller code; JVM tests use synthetic fixtures.
 
@@ -290,7 +313,7 @@ No SERVER state-changing requests were issued to the real receiver during this m
 - About opens as a separate page, Back returns to Settings, version reads 0.5.0, and the GitHub profile opens externally.
 - Recheck discovery, connection, power, native volume buttons, Mute/Unmute, source switching, tuner/presets and existing Spotify controls.
 
-### SERVER acceptance tests — all pending
+### SERVER acceptance tests - core browsing/playback verified; remaining edge cases pending
 
 1. Select SERVER while another input is active: confirm source first, then load the receiver menu. Test slow startup and unavailable source.
 2. No NAS/media server: show an honest empty/not-ready/error state, not Receiver Not Found.

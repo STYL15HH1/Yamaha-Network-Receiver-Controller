@@ -32,10 +32,11 @@ fun ReceiverScreen(vm: ReceiverViewModel, settings: AppSettings, selectLanguage:
     val powered = ControlPolicy.powered(state, busy)
     BackHandler(page != ReceiverPage.HOME) { if (!busy) vm.back() }
     Scaffold(topBar = {
-        ReceiverHeader(state, busy || rotary.active, vm::reconnect, vm::power, vm::settings)
+        ReceiverHeader(state, busy || rotary.active, vm::reconnect, vm::power, vm::settings,
+            home = if (page != ReceiverPage.HOME) vm::home else null)
     }) { padding ->
         Column(Modifier.fillMaxSize().padding(padding).imePadding(), horizontalAlignment = Alignment.CenterHorizontally) {
-            if (page != ReceiverPage.HOME && !(page == ReceiverPage.BROWSER && browser.source == "NET RADIO")) Row(Modifier.fillMaxWidth().padding(horizontal = 8.dp),
+            if (page != ReceiverPage.HOME && page != ReceiverPage.BROWSER) Row(Modifier.fillMaxWidth().padding(horizontal = 8.dp),
                 verticalAlignment = Alignment.CenterVertically) {
                 IconButton(onClick = vm::back, enabled = !busy) {
                     Icon(painterResource(R.drawable.ic_back), tr(R.string.back))

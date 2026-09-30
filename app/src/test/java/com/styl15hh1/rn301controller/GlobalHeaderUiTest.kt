@@ -42,6 +42,8 @@ class GlobalHeaderUiTest {
             compose.onAllNodesWithContentDescription("Settings").assertCountEquals(1)
             compose.onAllNodesWithContentDescription("Standby").assertCountEquals(1)
             compose.onNodeWithContentDescription("Standby").assertIsEnabled()
+            if(vm.page.value==ReceiverPage.HOME) compose.onNodeWithContentDescription("App Home").assertDoesNotExist()
+            else compose.onNodeWithContentDescription("App Home").assertIsDisplayed()
         }
         header()
         compose.runOnIdle {vm.openTuner()}
@@ -60,6 +62,9 @@ class GlobalHeaderUiTest {
         }
         compose.runOnIdle {vm.openPlayer()}
         compose.waitUntil(5000) {org.robolectric.shadows.ShadowLooper.idleMainLooper();!vm.busy.value}
+        header()
+        compose.onNodeWithContentDescription("App Home").performClick()
+        compose.runOnIdle {org.junit.Assert.assertEquals(ReceiverPage.HOME,vm.page.value)}
         header()
         compose.runOnIdle {vm.foreground(false)}
     }

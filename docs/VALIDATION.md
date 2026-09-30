@@ -1,3 +1,61 @@
+# v1.1.0 final signed release validation - 2026-09-30
+
+## Identity and physical status
+
+VersionName **1.1.0**, versionCode **16**, application ID **com.styl15hh1.rn301controller**. Existing production signing configuration is unchanged.
+
+The user physically verified SERVER/DLNA discovery through the receiver, browsing, multi-level folders, track selection and actual end-to-end R-N301 playback. The new v1.1.0 aggregation, browser presentation and App Home/Browser Root UX still require physical acceptance using the exact signed APK below. No additional receiver control or metadata edge case is marked passed.
+
+## Implementation and regression coverage
+
+- AggregatingMediaBrowser generalizes the existing Net Radio adapter to SERVER; retains 64-page/90-second bounds, readiness checks, transition validation, stale-window checks and original page/line identities.
+- SERVER's repository operation deadline increases from 15 to 90 seconds to accommodate aggregation. NET RADIO limits and XML semantics are unchanged.
+- Shared MediaBrowserContent and CompactMediaRow provide continuous scrolling, compact rows, local Search/Clear and separate catalogue-root buttons. Technical menu levels and page controls are absent.
+- App Home calls the existing local ViewModel.home action, is hidden on Receiver/Home, and does not send receiver commands. Browser Root retains the existing catalogue navigation.
+- Fifteen new tests in V110BrowserTest/V110UiTest cover aggregation, duplicate identities, selection/playback, empty/single-page menus, rewind, stale menus, bounds/timeouts, SERVER search/navigation, hidden technical UI and App Home isolation.
+- Existing global-header tests now check Home visibility/navigation across routes. Existing SERVER page-command regression remains at the raw page-browser layer; repository tests exercise aggregation. Net Radio UI tests use the new Radio root accessibility label.
+- Removed obsolete page/home-label resources; added App Home, Server root, Radio root and loading-limit messages in all eight locales.
+- Protocol builders/parsers, raw Yamaha page-command implementation, ViewModel and existing Now Playing implementation are unchanged.
+
+## Final validation
+
+Focused command: testDebugUnitTest with V110*, Server*Test, NetRadio*Test, V075BrowserTest, V075UiTest, V076UiTest, GlobalHeaderUiTest and ResourceValidationTest filters.
+
+- Focused tests: **123 passed**, 12 classes, zero failures/errors/skips.
+- Final command: **build assembleRelease lintDebug lintRelease --console=plain --no-configuration-cache**.
+- Full build/release assembly: **BUILD SUCCESSFUL**, 2m 31s.
+- Complete unit suite: **403 passed**, 41 classes, zero failures/errors/skips.
+- ResourceValidationTest: **4 passed**, including all eight locales, matching keys/format arguments and launcher density checks.
+- Debug lint: **0 errors / 7 existing warnings**.
+- Release lint: **0 errors / 7 existing warnings**.
+- Existing warnings: OldTargetApi; AndroidGradlePluginVersion; InsecureBaseConfiguration (legacy local HTTP); three UnusedResources (ui_selected, ui_not_selected, band_unavailable); IconXmlAndPng. No new lint warnings or suppressions.
+- The full debug build also reports that dependency library libandroidx.graphics.path.so cannot be stripped and is packaged as-is. No native code or native build configuration was changed.
+- git diff --check: PASS.
+- Existing eight README screenshot references resolve. Images and v1.0.0 release notes are unchanged.
+
+## Exact artifact for testing and publication
+
+File: **app/build/outputs/apk/release/Yamaha-Network-Receiver-Controller-v1.1.0.apk**
+
+- Size: **9,009,615 bytes**.
+- APK SHA-256: **24DE6828EFBDB9974CA613AA2B1D0B70F58B9E1CDC38F0C0593C6E5B7A41383B**.
+- apksigner: **Verifies**, exactly **one signer**, **v2 true**; v1/v3/v3.1/v4 false.
+- Certificate SHA-256: **AB:2A:CE:5A:9A:33:D2:F9:EC:C1:D3:48:2D:FA:51:58:DD:AE:44:A5:89:79:FA:18:5E:F1:32:96:E0:1D:A0:92**, exact required match.
+- aapt2 confirms **com.styl15hh1.rn301controller / 1.1.0 / 16**; APK is not debuggable.
+- Named artifact is byte-identical to the verified release output and ignored by Git.
+
+Install and physically test this exact file. If it passes, publish the same bytes and checksum without rebuilding.
+
+## Repository and publication status
+
+No tracked keystores, APKs, local signing-property files or matching signing-secret/private-key assignments were found by the repository audit. No signing secrets were read or copied into the project. Added documentation contains no private credential paths.
+
+No commit, push, tag, GitHub release, upload or repository-topic change was performed. Technical/signing validation is complete; physical acceptance of this APK is still required. The earlier supplied-artwork redistribution question in RELEASE_PREPARATION.md has not received new clearance evidence during this task.
+
+Existing screenshots remain v1.0.0 captures. After physical acceptance, add a SERVER browser capture and replace Screenshot_20260929_093705 (Net Radio root/header), Screenshot_20260929_093608 (Tuner header) and, where visible behind its dialog, Screenshot_20260929_093648 (Settings header). Home/source-only captures remain representative.
+
+Earlier validation records follow.
+
 # v1.0.0 validation
 
 ## Final release polish validation - 2026-09-29
@@ -447,7 +505,7 @@ User-confirmed PASS: discovery, connection, source selection, Power/Standby, nat
 
 NET RADIO source activation, basic Yamaha/vTuner catalogue/browser operation and station playback: **PHYSICAL PASS**. This does not assert every path/pagination/slow-service/metadata/Stop edge case was tested.
 
-SERVER: **IMPLEMENTED / UNIT TESTED / PHYSICAL PENDING** because no DLNA music server is configured. Neither PASS nor FAIL.
+SERVER: **VERIFIED** for receiver-mediated discovery, multi-level browsing, folders, track selection and end-to-end playback (user report, 2026-09-30).
 
 New v0.7 rotary, haptics, Quick Sources, preset layout and player polish: **PHYSICAL PENDING**. No receiver control command was sent to physical hardware during development.
 

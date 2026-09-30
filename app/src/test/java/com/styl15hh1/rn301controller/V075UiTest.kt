@@ -39,7 +39,7 @@ class V075UiTest {
             Surface(Modifier.fillMaxSize()) { Column(Modifier.fillMaxSize()){
                 Box(Modifier.padding(horizontal=16.dp)){QuickSourceRow(favorites,Source("NET RADIO"),true){}}
                 MediaBrowserContent(BrowserState("NET RADIO",BrowserPhase.CONTENT,list),enabled,
-                    {back++},{home++},{refresh++},{selected=it},{error("UI must not page")},
+                    {back++},{home++},{refresh++},{selected=it},
                     {},{player++},Modifier.weight(1f))
             }}
         }}
@@ -69,7 +69,7 @@ class V075UiTest {
     @Test fun toolbarActionsAndNowPlayingRemainAccessible() {
         render()
         compose.onNodeWithContentDescription("Back").performClick()
-        compose.onNodeWithContentDescription("Net Radio home").performClick()
+        compose.onNodeWithContentDescription("Radio root").performClick()
         compose.onNodeWithContentDescription("Refresh").performClick()
         compose.onNodeWithText("Now Playing").performClick()
         assertEquals(listOf(1,1,1,1),listOf(back,home,refresh,player))
@@ -87,7 +87,7 @@ class V075UiTest {
     }
     @Test fun disabledNavigationAndRowsCannotDispatch() {
         render(enabled=false)
-        for(label in listOf("Back","Net Radio home","Refresh"))
+        for(label in listOf("Back","Radio root","Refresh"))
             compose.onNodeWithContentDescription(label).assertIsNotEnabled()
         compose.onNodeWithText("Japan").performClick()
         assertNull(selected)

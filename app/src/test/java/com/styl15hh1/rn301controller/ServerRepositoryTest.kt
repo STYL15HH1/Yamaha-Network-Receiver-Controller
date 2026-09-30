@@ -17,7 +17,9 @@ internal class ServerFake : YamahaTransport {
     var source = "SERVER"
     var layer = 1
     var current = 1
-    var max = 17
+    var max = 2
+    var stuckPage = false
+    var changedNames = false
     var busyReads = 0
     var stuck = false
     var fault: ErrorKind? = null
@@ -41,12 +43,16 @@ internal class ServerFake : YamahaTransport {
                 fault?.let { throw YamahaException(ReceiverError(it)) }
                 delay(listDelay)
                 mediaListXml(layer,current,if(max == 0) 0 else max,
-                    if(max == 0) "" else """<Line_1><Txt>Folder $layer</Txt><Attribute>Container</Attribute></Line_1><Line_2><Txt>Track</Txt><Attribute>Item</Attribute></Line_2>""",
+                    if(max == 0) "" else (1..minOf(8, max - current + 1)).joinToString("") { line ->
+                        val title = if (changedNames) "Changed" else if (line == 1) "Folder $layer" else "Track"
+                        val attribute = if (line == 1) "Container" else "Item"
+                        "<Line_$line><Txt>$title</Txt><Attribute>$attribute</Attribute></Line_$line>"
+                    },
                     if(busyReads-- > 0) "Busy" else "Ready", "Menu $layer")
             }
             is YamahaCommand.ServerSelect -> { if(command.line == 1) { layer++; current=1 }; ack }
             YamahaCommand.ServerBack -> { if(!stuck) layer = (layer-1).coerceAtLeast(1); current=1; ack }
-            is YamahaCommand.ServerPage -> { current += if(command.next) 8 else -8; ack }
+            is YamahaCommand.ServerPage -> { if (!stuckPage) current += if(command.next) 8 else -8; ack }
             else -> ack
         }
     }
@@ -102,9 +108,11 @@ class ServerRepositoryTest {
         assertTrue(fake.commands.none { it is YamahaCommand.ServerSelect })
     }
     @Test fun nextAndPreviousPageUseLocalLineIds() = runTest {
-        val fake=ServerFake();val repo=repo(fake);repo.openBrowser()
-        repo.browserPage(true);assertEquals(2,repo.browser.value.list!!.page)
-        repo.browserPage(false);assertEquals(1,repo.browser.value.list!!.page)
+        val fake=ServerFake().apply { max=17 }
+        val pages=ServerMediaBrowser(fake,YamahaXmlParser())
+        var list=pages.getCurrentList("receiver")
+        list=pages.changePage("receiver",list,true);assertEquals(2,list.page)
+        list=pages.changePage("receiver",list,false);assertEquals(1,list.page)
     }
     @Test fun backDescendsOneLevelAndRootLeavesWithoutPut() = runTest {
         val fake=ServerFake().apply { layer=3 };val repo=repo(fake);repo.openBrowser()
@@ -145,9 +153,9 @@ class ServerRepositoryTest {
         }
     }
     @Test fun overallBrowserDeadlineIsFinite() = runTest {
-        val fake=ServerFake().apply { listDelay=20000 };val repo=repo(fake);repo.openBrowser()
+        val fake=ServerFake().apply { listDelay=100000 };val repo=repo(fake);repo.openBrowser()
         assertEquals(BrowserFailure.TIMEOUT,repo.browser.value.error)
-        assertEquals(15000,testScheduler.currentTime)
+        assertEquals(90000,testScheduler.currentTime)
     }
     @Test fun cancellingAfterSelectionDoesNotRepeatPut() = runTest {
         val fake=ServerFake();val repo=repo(fake);repo.openBrowser();fake.commands.clear()

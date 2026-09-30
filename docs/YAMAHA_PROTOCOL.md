@@ -1,3 +1,11 @@
+## v1.1.0 SERVER browser orchestration
+
+Existing SERVER XML commands and parsers are unchanged. The same bounded aggregation adapter used for NET RADIO now wraps the separate SERVER page browser. It reads List_Info, traverses existing Page Up/Down commands, preserves page-local Direct_Sel identities and checks the receiver window again before selection. Track selection retains Direct_Sel followed by Play.
+
+Both browser operations allow at most 64 pages and 90 seconds. SERVER previously used a 15-second operation deadline; aggregation now shares the existing NET RADIO deadline. Readiness retry counts, page transition checks, catalogue-root Return limits and stale-menu validation remain in the protocol-specific page browser. Equal names remain separate items by original page and line. Single-page menus issue no page commands. Search is local filtering only.
+
+App Home is application navigation only. Server root and Radio root retain their existing bounded Cursor Return behavior.
+
 # v1.0.0 release baseline
 
 Version **1.0.0 (15)**, package **com.styl15hh1.rn301controller**. The user approved the current v0.7.7 functionality and visual design as the stable baseline. No new receiver commands or capabilities are introduced.
@@ -190,7 +198,7 @@ The historical protocol notes below retain their original milestone context.
 
 # Yamaha R-N301 protocol implemented through v0.7
 
-**Current hardware update:** NET RADIO activation, basic catalogue browsing and station playback through the receiver’s Yamaha/vTuner service are now user-confirmed PASS. v0.6 UI functionality and language/settings navigation are also PASS. Earlier pending statements below describe their milestone-time status; unreported edge cases remain pending. SERVER remains physically PENDING because no DLNA server is configured.
+**Current hardware update:** NET RADIO activation, basic catalogue browsing and station playback through the receiver’s Yamaha/vTuner service are now user-confirmed PASS. v0.6 UI functionality and language/settings navigation are also PASS. Earlier pending statements below describe their milestone-time status; unreported edge cases remain pending. SERVER core discovery, multi-level browsing and end-to-end playback are now physically VERIFIED (user report, 2026-09-30).
 
 Exact paths were inspected before implementation. The v0.1 sections retain representative reference-derived XML. The v0.2 sections distinguish user-confirmed v0.1 hardware results, additional read-only workstation captures, and controls still awaiting physical Android testing.
 
@@ -758,7 +766,7 @@ Unit tests use synthetic fixtures. Physical tests must confirm menu status/empty
 
 All new commands below are REFERENCE VERIFIED and covered by JVM fixtures/navigation tests. None is claimed PHYSICALLY VERIFIED. Fixtures are synthetic grammar examples, not captured radio catalogue responses.
 
-Physical status supplied by the user: discovery, connection, source selection, Power/Standby, native +/- volume, Mute/Unmute, Tuner/presets/manual tuning, Spotify source/artwork and Settings gear/navigation PASS. SERVER remains PENDING: no DLNA server is configured. No change to working power, volume, mute or tuner command XML was made.
+Physical status supplied by the user: discovery, connection, source selection, Power/Standby, native +/- volume, Mute/Unmute, Tuner/presets/manual tuning, Spotify source/artwork and Settings gear/navigation PASS. SERVER core discovery, browsing and end-to-end playback are now VERIFIED (user report, 2026-09-30). No change to working power, volume, mute or tuner command XML was made.
 
 ### Exact evidence
 
@@ -901,4 +909,4 @@ The parser already supplied all these fields; v0.7 adds presentation/fixture cov
 
 PlayerPresentation chooses station/title first, deduplicates secondary metadata and collapses stopped/unknown players lacking metadata into a small source/state row. Playing/paused or meaningful metadata retains the full compact card; the dedicated player remains available. Existing per-source capabilities govern every playback action. No new player commands were added.
 
-NET RADIO basic source activation, Yamaha/vTuner catalogue operation and station playback are now physically PASS. Edge-case paths, service failures and individual metadata/Stop behavior are not automatically marked passed. SERVER remains implemented/unit tested and physically PENDING without a DLNA server. Custom radio URLs, YCast and DLNA infrastructure are outside v0.7.
+NET RADIO basic source activation, Yamaha/vTuner catalogue operation and station playback are now physically PASS. Edge-case paths, service failures and individual metadata/Stop behavior are not automatically marked passed. SERVER core discovery, browsing and end-to-end playback are now physically VERIFIED (user report, 2026-09-30). Custom radio URLs, YCast and DLNA infrastructure are outside v0.7.

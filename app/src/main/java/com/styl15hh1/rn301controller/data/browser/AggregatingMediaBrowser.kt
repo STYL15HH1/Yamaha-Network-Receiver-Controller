@@ -6,17 +6,17 @@ import kotlinx.coroutines.withTimeoutOrNull
 /** A UI menu assembled from verified Yamaha windows, never a separate catalogue API.
  * Calls run within the repository mutex. Raw page snapshots are retained for safe selection.
  */
-class AggregatingRadioBrowser(
+class AggregatingMediaBrowser(
     private val pages: YamahaMediaBrowser,
     private val maxPages: Int = 64,
     private val timeoutMs: Long = 90_000
 ) : YamahaMediaBrowser {
-    override val source = "NET RADIO"
+    override val source = pages.source
     override val navigationPath get() = pages.navigationPath
     override val selectedStation get() = pages.selectedStation
     private var complete: MediaList? = null
     private var snapshots = emptyMap<Int, MediaList>()
-    init { require(pages.source == source && maxPages in 1..64 && timeoutMs > 0) }
+    init { require(source in setOf("SERVER", "NET RADIO") && maxPages in 1..64 && timeoutMs > 0) }
     override fun resetPath() { complete = null; snapshots = emptyMap(); pages.resetPath() }
     private fun fail(reason: BrowserFailure): Nothing = throw BrowserException(reason)
     private fun identity(a: MediaList, b: MediaList) =

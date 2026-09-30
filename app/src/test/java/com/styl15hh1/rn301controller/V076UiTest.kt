@@ -33,7 +33,7 @@ class V076UiTest {
     private fun browser(list:MediaList) {
         compose.setContent{ReceiverTheme(true){Surface{
             MediaBrowserContent(BrowserState("NET RADIO",BrowserPhase.CONTENT,list),true,
-                {calls++},{calls++},{calls++},{selected=it;calls++},{calls++},{calls++},{calls++},Modifier.fillMaxSize())
+                {calls++},{calls++},{calls++},{selected=it;calls++},{calls++},{calls++},Modifier.fillMaxSize())
         }}}
     }
     @Test fun volumeHeaderUsesOneRowAndPersistsWhileReceiverValuesUpdate() {
@@ -114,7 +114,7 @@ class V076UiTest {
         var list by mutableStateOf(menu())
         compose.setContent{ReceiverTheme(true){Surface{
             MediaBrowserContent(BrowserState("NET RADIO",BrowserPhase.CONTENT,list),true,
-                {calls++},{calls++},{calls++},{calls++},{calls++},{calls++},{calls++},Modifier.fillMaxSize())
+                {calls++},{calls++},{calls++},{calls++},{calls++},{calls++},Modifier.fillMaxSize())
         }}}
         compose.onNodeWithContentDescription("Search").performClick()
         compose.onNode(hasSetTextAction()).performTextInput("Poland")

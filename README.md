@@ -2,9 +2,9 @@
 
 A modern native Android controller for the **Yamaha R-N301**. Control your receiver directly over its local Yamaha HTTP/XML interface—without an application cloud backend, Yamaha account, or Spotify account integration in the app.
 
-**Stable version: v1.0.0 · Android 8.0+ · Eight languages · MIT**
+**Stable version: v1.1.0 · Android 8.0+ · Eight languages · MIT**
 
-[Download from GitHub Releases](https://github.com/STYL15HH1/Yamaha-Network-Receiver-Controller/releases) · [Release notes](docs/RELEASE_NOTES_v1.0.0.md) · [Protocol documentation](docs/YAMAHA_PROTOCOL.md)
+[Download from GitHub Releases](https://github.com/STYL15HH1/Yamaha-Network-Receiver-Controller/releases) · [Release notes](docs/RELEASE_NOTES_v1.1.0.md) · [Protocol documentation](docs/YAMAHA_PROTOCOL.md)
 
 **Unofficial project:** this is an independent community project, not affiliated with or endorsed by Yamaha.
 
@@ -25,7 +25,7 @@ A modern native Android controller for the **Yamaha R-N301**. Control your recei
 </tr>
 </table>
 
-Actual phone captures supplied for public use, shown at their original proportions. Radio metadata and catalogue contents come from the receiver and may vary; no particular catalogue backend is required.
+Actual v1.0.0 phone captures supplied for public use, shown at their original proportions. Radio metadata and catalogue contents come from the receiver and may vary; no particular catalogue backend is required.
 
 ## Features
 
@@ -36,12 +36,14 @@ Actual phone captures supplied for public use, shown at their original proportio
 | Favorites | Up to four configurable quick sources, with saved order |
 | Tuner | FM / AM, saved-preset recall, manual tuning, seek, FM Auto / Mono and available RDS metadata |
 | Spotify | Receiver-provided track/artist/album metadata and Previous / Play-Pause / Next |
-| SERVER / DLNA | Browse receiver-visible media, navigate folders and control playback |
+| SERVER / DLNA | Browse receiver-visible media in continuous lists with automatic pagination, local search, folder navigation and playback controls |
 | Net Radio | Multi-level receiver catalogue browsing, search within the loaded menu, station selection, Now Playing and Stop |
 
 Sources include **Tuner, CD, Optical, Line 1–3, Spotify, SERVER, Net Radio and AirPlay**, plus **Coaxial when advertised/supported by the receiver**. AirPlay is source selection only. Available controls reflect the receiver's supported capabilities.
 
 Volume remains in native receiver units; the app does not invent a dB conversion. Spotify is controlled through the R-N301, without a Spotify SDK, Web API or OAuth flow.
+
+SERVER and Net Radio share a compact browser toolbar and continuous lists. Search filters only the loaded directory on the phone. **App Home** in the receiver header returns to the main Receiver screen without changing input or playback. The separate **Server root / Radio root** folder button returns to the current catalogue root. Receiver / Now Playing navigation remains available below each browser.
 
 ## Languages and appearance
 
@@ -70,7 +72,7 @@ If you test another receiver, please [open a GitHub issue](https://github.com/ST
 | Tuner | Verified |
 | Spotify | Verified |
 | NET RADIO | Verified |
-| SERVER/DLNA | Implemented, but not physically end-to-end tested |
+| SERVER/DLNA | Verified |
 
 ## Requirements
 
@@ -84,7 +86,7 @@ Manual connection is available when the network blocks multicast discovery.
 ## Installation
 
 1. Open [GitHub Releases](https://github.com/STYL15HH1/Yamaha-Network-Receiver-Controller/releases).
-2. Download the signed **Yamaha-Network-Receiver-Controller-v1.0.0.apk** release asset.
+2. Download the signed **Yamaha-Network-Receiver-Controller-v1.1.0.apk** release asset.
 3. Open the APK on your phone and, when prompted, allow installation from the trusted browser or file manager.
 4. Discover your receiver or enter its address in Settings.
 
@@ -150,7 +152,7 @@ Release builds fail if signing properties are missing; debug builds remain indep
 - Other receiver models are not guaranteed.
 - AirPlay is input selection only; Spotify Stop, Shuffle and Repeat are not implemented.
 - Preset storage, tone controls, speaker A/B selection and Sleep are not implemented.
-- Net Radio search covers the loaded menu, not the entire catalogue. Large/slow menus can reach traversal limits.
+- SERVER and Net Radio search cover the loaded menu, not the entire catalogue. Loading is bounded to 64 pages and 90 seconds; large or slow menus can reach those limits.
 - Another controller can change the receiver menu during browsing. Unavailable services/media and missing metadata are reported without inventing content.
 - No direct stream URLs, artwork fetching, background service or home-screen widget.
 
@@ -161,7 +163,7 @@ Release builds fail if signing properties are missing; debug builds remain indep
 - [Discovery](docs/DISCOVERY.md)
 - [Validation](docs/VALIDATION.md)
 - [Physical test findings](docs/PHYSICAL_TEST_CHECKLIST.md)
-- [v1.0.0 release notes](docs/RELEASE_NOTES_v1.0.0.md)
+- [v1.1.0 release notes](docs/RELEASE_NOTES_v1.1.0.md)
 - [Third-party notices](THIRD_PARTY_NOTICES.md)
 
 ## License and attribution

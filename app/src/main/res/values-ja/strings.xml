@@ -117,8 +117,6 @@
     <string name="application_language">アプリの言語</string>
     <string name="system_default">システムのデフォルト</string>
     <string name="player_inactive">対応する再生ソースが選択されていません。</string>
-    <string name="menu_level">メニュー階層 %1$d</string>
-    <string name="browser_home">ホーム</string>
     <string name="refresh">更新</string>
     <string name="loading_media">メディアを読み込み中…</string>
     <string name="no_media_servers">メディアサーバーが見つかりません。</string>
@@ -131,9 +129,6 @@
     <string name="browser_failed">このフォルダーを読み込めません。メディアサーバーが利用できない可能性があります。</string>
     <string name="open_browser_hint">更新してレシーバーのメニューを読み込んでください。</string>
     <string name="open_folder">フォルダーを開く</string>
-    <string name="browser_page">%1$d / %2$d ページ</string>
-    <string name="previous_page">前のページ</string>
-    <string name="next_page">次のページ</string>
     <string name="loading_radio">インターネットラジオを読み込み中…</string>
     <string name="no_stations">利用可能な放送局がありません。</string>
     <string name="radio_failed">このラジオ一覧を読み込めません。</string>
@@ -141,11 +136,9 @@
     <string name="radio_timeout">インターネットラジオの応答がタイムアウトしました。もう一度お試しください。</string>
     <string name="radio_path_missing">放送局へのパスは利用できなくなりました。</string>
     <string name="radio_path_ambiguous">放送局へのパスが一意ではありません。放送局は選択されませんでした。</string>
-    <string name="radio_limit">ナビゲーションの安全上限に達しました。</string>
     <string name="radio_playback_failed">放送局の再生を確認できません。</string>
     <string name="radio_inactive">放送局を探すには Net Radio を選択してください。</string>
     <string name="radio_open_hint">メニューを読み込むには Net Radio を開いてください。</string>
-    <string name="browser_path">パス: %1$s</string>
     <string name="rotary_volume">音量ダイヤル</string>
     <string name="rotate_hint">時計回りで音量を上げ、反時計回りで下げます</string>
     <string name="quick_sources">お気に入りの入力</string>
@@ -173,10 +166,13 @@
     <string name="collapse_volume">音量を折りたたむ</string>
     <string name="muted">ミュート中</string>
     <string name="unmuted">ミュート解除</string>
-    <string name="radio_home">ネットラジオのホーム</string>
     <string name="search">検索</string>
     <string name="search_countries">国を検索</string>
     <string name="search_stations">放送局を検索</string>
     <string name="no_results">検索結果なし</string>
     <string name="clear_search">検索をクリア</string>
+    <string name="app_home">アプリのホーム</string>
+    <string name="server_root">サーバーのルート</string>
+    <string name="radio_root">ラジオのルート</string>
+    <string name="browser_limit">メニューが安全な読み込み上限を超えています。より小さいフォルダを開いてください。</string>
 </resources>

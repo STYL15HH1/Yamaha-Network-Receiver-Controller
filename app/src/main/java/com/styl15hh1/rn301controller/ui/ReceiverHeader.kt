@@ -17,7 +17,7 @@ import com.styl15hh1.rn301controller.data.model.*
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ReceiverHeader(state: ReceiverStatus, busy: Boolean, connect: () -> Unit,
-    power: (Boolean) -> Unit, settings: () -> Unit) {
+    power: (Boolean) -> Unit, settings: () -> Unit, home: (() -> Unit)? = null) {
     TopAppBar(title = {
         Column {
             Text(state.modelName ?: "R-N301", style = MaterialTheme.typography.headlineSmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
@@ -36,6 +36,9 @@ internal fun ReceiverHeader(state: ReceiverStatus, busy: Boolean, connect: () ->
     }, colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background), actions = {
         if (state.connectionState != ConnectionState.CONNECTED) IconButton(onClick = connect, enabled = !busy) {
             Icon(painterResource(R.drawable.ic_connect), tr(R.string.connect_receiver))
+        }
+        home?.let { navigate ->
+            IconButton(onClick = navigate) { Icon(painterResource(R.drawable.ic_home), tr(R.string.app_home)) }
         }
         PowerAction(state, busy, power)
         IconButton(onClick = settings) { Icon(painterResource(R.drawable.ic_settings), tr(R.string.settings)) }

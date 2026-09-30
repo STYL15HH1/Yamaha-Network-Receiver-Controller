@@ -34,7 +34,7 @@ class ResourceValidationTest {
         assertTrue(strings("values-ja").getValue("settings").contains("設定"))
     }
     @Test fun netRadioProductNameIsConsistentInEuropeanLocales() {
-        val keys = listOf("loading_radio", "radio_service", "radio_timeout", "radio_home", "radio_inactive", "radio_open_hint")
+        val keys = listOf("loading_radio", "radio_service", "radio_timeout", "radio_inactive", "radio_open_hint")
         for (folder in listOf("values", "values-pl", "values-es", "values-de", "values-fr", "values-it")) {
             val values = strings(folder)
             assertEquals(folder, "Net Radio", values.getValue("net_radio"))

@@ -117,8 +117,6 @@
     <string name="application_language">앱 언어</string>
     <string name="system_default">시스템 기본값</string>
     <string name="player_inactive">지원되는 재생 소스가 활성화되어 있지 않습니다.</string>
-    <string name="menu_level">메뉴 단계 %1$d</string>
-    <string name="browser_home">처음으로</string>
     <string name="refresh">새로고침</string>
     <string name="loading_media">미디어 불러오는 중…</string>
     <string name="no_media_servers">미디어 서버를 찾을 수 없습니다.</string>
@@ -131,9 +129,6 @@
     <string name="browser_failed">폴더를 불러올 수 없습니다. 미디어 서버를 사용할 수 없을 수 있습니다.</string>
     <string name="open_browser_hint">새로고침하여 리시버 메뉴를 불러오세요.</string>
     <string name="open_folder">폴더 열기</string>
-    <string name="browser_page">%1$d / %2$d 페이지</string>
-    <string name="previous_page">이전 페이지</string>
-    <string name="next_page">다음 페이지</string>
     <string name="loading_radio">인터넷 라디오를 불러오는 중…</string>
     <string name="no_stations">사용 가능한 방송국이 없습니다.</string>
     <string name="radio_failed">이 라디오 목록을 불러올 수 없습니다.</string>
@@ -141,11 +136,9 @@
     <string name="radio_timeout">인터넷 라디오 응답 시간이 초과되었습니다. 다시 시도하세요.</string>
     <string name="radio_path_missing">방송국 경로를 더 이상 사용할 수 없습니다.</string>
     <string name="radio_path_ambiguous">방송국 경로가 명확하지 않습니다. 방송국을 선택하지 않았습니다.</string>
-    <string name="radio_limit">탐색 안전 한도에 도달했습니다.</string>
     <string name="radio_playback_failed">방송국 재생을 확인할 수 없습니다.</string>
     <string name="radio_inactive">방송국을 탐색하려면 Net Radio를 선택하세요.</string>
     <string name="radio_open_hint">메뉴를 불러오려면 Net Radio를 여세요.</string>
-    <string name="browser_path">경로: %1$s</string>
     <string name="rotary_volume">볼륨 다이얼</string>
     <string name="rotate_hint">시계 방향으로 돌리면 커지고 반시계 방향으로 돌리면 작아집니다</string>
     <string name="quick_sources">즐겨찾는 입력</string>
@@ -173,10 +166,13 @@
     <string name="collapse_volume">볼륨 접기</string>
     <string name="muted">음소거됨</string>
     <string name="unmuted">음소거 해제됨</string>
-    <string name="radio_home">인터넷 라디오 홈</string>
     <string name="search">검색</string>
     <string name="search_countries">국가 검색</string>
     <string name="search_stations">방송국 검색</string>
     <string name="no_results">검색 결과 없음</string>
     <string name="clear_search">검색어 지우기</string>
+    <string name="app_home">앱 홈</string>
+    <string name="server_root">서버 최상위 폴더</string>
+    <string name="radio_root">라디오 최상위 메뉴</string>
+    <string name="browser_limit">메뉴가 안전한 로딩 한도를 초과합니다. 더 작은 폴더를 여세요.</string>
 </resources>

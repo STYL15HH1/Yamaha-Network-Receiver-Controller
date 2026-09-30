@@ -117,8 +117,6 @@
     <string name="application_language">App-Sprache</string>
     <string name="system_default">Systemstandard</string>
     <string name="player_inactive">Keine unterstützte Wiedergabequelle ist aktiv.</string>
-    <string name="menu_level">Menüebene %1$d</string>
-    <string name="browser_home">Start</string>
     <string name="refresh">Aktualisieren</string>
     <string name="loading_media">Medien werden geladen…</string>
     <string name="no_media_servers">Keine Medienserver gefunden.</string>
@@ -131,9 +129,6 @@
     <string name="browser_failed">Dieser Ordner kann nicht geladen werden. Der Medienserver ist möglicherweise nicht erreichbar.</string>
     <string name="open_browser_hint">Aktualisieren, um das Empfängermenü zu laden.</string>
     <string name="open_folder">Ordner öffnen</string>
-    <string name="browser_page">Seite %1$d von %2$d</string>
-    <string name="previous_page">Vorherige Seite</string>
-    <string name="next_page">Nächste Seite</string>
     <string name="loading_radio">Net Radio wird geladen…</string>
     <string name="no_stations">Keine Sender verfügbar.</string>
     <string name="radio_failed">Dieses Radioverzeichnis konnte nicht geladen werden.</string>
@@ -141,11 +136,9 @@
     <string name="radio_timeout">Net Radio hat nicht rechtzeitig geantwortet. Erneut versuchen.</string>
     <string name="radio_path_missing">Der Senderpfad ist nicht mehr verfügbar.</string>
     <string name="radio_path_ambiguous">Der Senderpfad ist nicht eindeutig. Es wurde kein Sender ausgewählt.</string>
-    <string name="radio_limit">Die Sicherheitsgrenze für die Navigation wurde erreicht.</string>
     <string name="radio_playback_failed">Die Senderwiedergabe konnte nicht bestätigt werden.</string>
     <string name="radio_inactive">Zum Durchsuchen Net Radio auswählen.</string>
     <string name="radio_open_hint">Net Radio öffnen, um das Menü zu laden.</string>
-    <string name="browser_path">Pfad: %1$s</string>
     <string name="rotary_volume">Lautstärkedrehregler</string>
     <string name="rotate_hint">Im Uhrzeigersinn drehen zum Erhöhen, gegen den Uhrzeigersinn zum Verringern</string>
     <string name="quick_sources">Bevorzugte Quellen</string>
@@ -173,10 +166,13 @@
     <string name="collapse_volume">Lautstärke einklappen</string>
     <string name="muted">Stummgeschaltet</string>
     <string name="unmuted">Ton eingeschaltet</string>
-    <string name="radio_home">Startseite von Net Radio</string>
     <string name="search">Suchen</string>
     <string name="search_countries">Länder suchen</string>
     <string name="search_stations">Sender suchen</string>
     <string name="no_results">Keine Ergebnisse</string>
     <string name="clear_search">Suche löschen</string>
+    <string name="app_home">App-Startseite</string>
+    <string name="server_root">Server-Stammverzeichnis</string>
+    <string name="radio_root">Radio-Stammverzeichnis</string>
+    <string name="browser_limit">Das Menü überschreitet die sichere Ladegrenze. Öffne ein kleineres Verzeichnis.</string>
 </resources>
