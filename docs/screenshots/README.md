@@ -1,6 +1,22 @@
-# Public screenshots
+# Screenshot inventory
 
-The current final v1.0.0 set contains the eight supplied captures below. Only their filenames were updated for the Yamaha Receiver Controller brand; image bytes are unchanged. All eight appear in the root README gallery, arranged in two rows of four at 220 px width with their original proportions.
+## Final v1.2.0 captures
+
+The three supplied final files were visually reviewed without editing their content. Filenames already meet the repository convention.
+
+| File | Content |
+| --- | --- |
+| [Yamaha-Receiver-Controller-Widget-v1.2.0.jpg](Yamaha-Receiver-Controller-Widget-v1.2.0.jpg) | Home Screen Widget, Spotify metadata, three centered favorites and selected Spotify tile. |
+| [Yamaha-Receiver-Controller-Tuner-v1.2.0.jpg](Yamaha-Receiver-Controller-Tuner-v1.2.0.jpg) | Compact player, stereo reception and eleven receiver-returned presets with stored frequencies. |
+| [Yamaha-Receiver-Controller-Tuner-RDS-v1.2.0.jpg](Yamaha-Receiver-Controller-Tuner-RDS-v1.2.0.jpg) | Compact player with live Radio Text, Mono selected and preset frequencies. |
+
+No legible local IP is visible in these supplied images. Both Tuner headers show R-N301 and Connected, without an address. No blurring or other image edits were performed. Model, station/RDS and track metadata remain visible. These findings refer to the actual final files, not earlier captures described as containing an IP.
+
+All three final captures appear in the README gallery; the two earlier Tuner captures are retained as historical files, not used as the current Tuner screenshots.
+
+## Historical v1.0.0 captures
+
+The historical v1.0.0 set contains the eight supplied captures below. Only their filenames were updated for the Yamaha Receiver Controller brand; image bytes are unchanged. Six remain in the root README gallery for unchanged features; the two Tuner images are superseded by the final v1.2.0 captures above.
 
 | Screenshot file | Gallery caption | Visible content |
 | --- | --- | --- |

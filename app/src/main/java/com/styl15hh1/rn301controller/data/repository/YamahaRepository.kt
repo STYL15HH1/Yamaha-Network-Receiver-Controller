@@ -46,6 +46,10 @@ class YamahaRepository(
 
     suspend fun savedAddress() = store.read()
 
+    suspend fun compatibilityReport(address: String): CompatibilityReport = lock.withLock {
+        withContext(io) { CompatibilityReader(transport, parser).read(address) }
+    }
+
     suspend fun connect(address: String) = operation(ErrorContext.CONNECTION) {
         browsers.values.forEach { it.resetPath() }
         mutableBrowser.value = BrowserState()
@@ -93,6 +97,10 @@ class YamahaRepository(
     }
 
     suspend fun power(on: Boolean) = action { YamahaCommand.Power(on) }
+    suspend fun toggleWidgetPower() = action(refreshFirst = true) {
+        if (status.value.powerState == PowerState.UNAVAILABLE) unsupported("Power state unknown")
+        YamahaCommand.Power(status.value.powerState != PowerState.ON)
+    }
     suspend fun mute(on: Boolean) = action(ErrorContext.MUTE) { YamahaCommand.Mute(on) }
     suspend fun toggleMute() = action(ErrorContext.MUTE) {
         val mute = status.value.muted ?: unsupported("Mute state unknown")
@@ -393,8 +401,9 @@ class YamahaRepository(
         return YamahaCommand.SetVolume(volume.copy(value = value))
     }
 
-    private suspend fun action(context: ErrorContext = ErrorContext.COMMAND, command: () -> YamahaCommand) = operation(context) {
+    private suspend fun action(context: ErrorContext = ErrorContext.COMMAND, refreshFirst: Boolean = false, command: () -> YamahaCommand) = operation(context) {
         if (!verified || status.value.connectionState != ConnectionState.CONNECTED) unsupported("Receiver not connected")
+        if (refreshFirst) refreshLocked()
         val cmd = command()
         if (cmd !is YamahaCommand.Power && status.value.powerState != PowerState.ON) unsupported("Receiver is in standby")
         parser.response(transport.command(ip!!, cmd), "PUT")

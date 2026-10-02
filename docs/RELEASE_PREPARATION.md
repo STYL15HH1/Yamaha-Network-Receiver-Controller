@@ -1,5 +1,7 @@
 # v1.0.0 release preparation
 
+> Historical release record. For the current v1.2.0 accepted APK and validation, see [VALIDATION_v1.2.0.md](VALIDATION_v1.2.0.md). Older artifacts and results below are not the current release.
+
 ## Final release polish validation - 2026-09-29
 
 The Spotify Now Playing header retains the existing wordmark and accessible source name while removing the duplicate visible label. Artwork dimensions, metadata, playback controls and navigation remain unchanged. Signing configuration and release identity are unchanged.

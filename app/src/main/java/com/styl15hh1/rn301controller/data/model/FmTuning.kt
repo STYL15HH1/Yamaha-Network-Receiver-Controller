@@ -27,9 +27,15 @@ data class TuningRange(val min: Int, val max: Int, val step: Int, val band: Tune
 data class PresetPresentation(val number: Int, val station: String?, val frequency: String?, val selected: Boolean)
 fun TunerPreset.presentation(status: TunerStatus?): PresetPresentation {
     val selected = status?.preset == number
-    val frequencyTitle = title.takeIf { it.matches(Regex("(?i)(FM|AM)\\s+[0-9.,]+\\s*(MHz|kHz)?")) }
+    val match = Regex("(?i)^(?:\\d+\\s*:\\s*)?(FM|AM)\\s+(\\d+(?:[.,]\\d+)?)\\s*(MHz|kHz)$")
+        .matchEntire(title.trim())
+    val frequencyTitle = match?.let {
+        val unit = if (it.groupValues[1].equals("FM", ignoreCase = true)) "MHz" else "kHz"
+        if (it.groupValues[3].equals(unit, ignoreCase = true))
+            "${it.groupValues[2].replace(',', '.')} $unit" else null
+    }
     val named = title.takeUnless { it == "Preset $number" || frequencyTitle != null || it.isBlank() }
     // Live RDS belongs only to the current preset; never cache it onto other stations.
     return PresetPresentation(number, if (selected) status.nowPlaying.station ?: named else named,
-        frequencyTitle ?: if (selected) status.frequency?.display else null, selected)
+        frequencyTitle, selected)
 }

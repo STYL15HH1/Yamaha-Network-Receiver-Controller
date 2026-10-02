@@ -29,21 +29,31 @@ internal fun TunerMetadata(info: TunerStatus?, home: Boolean) {
     // Never promote Radio Text (title) to station when Program Service is absent.
     val station = unique(info?.nowPlaying?.station)
     val radioText = unique(info?.nowPlaying?.title)
-    val programType = unique(info?.programType)
-    val details = listOfNotNull(info?.band, tunerSignal(info),
-        info?.preset?.let { tr(R.string.preset_number, it) }).distinct()
+    val preset = info?.preset?.let { tr(R.string.preset_number, it) }
+    val details = if (home) listOfNotNull(info?.band, tunerSignal(info), preset).distinct()
+        else listOfNotNull(info?.band, preset ?: tr(R.string.no_preset), tunerSignal(info)).distinct()
     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.spacedBy(3.dp)) {
-        station?.let { Text(it, style = MaterialTheme.typography.titleLarge,
-            maxLines = 2, overflow = TextOverflow.Ellipsis) }
-        Text(frequency ?: tr(R.string.frequency_unavailable),
-            style = if (station != null) MaterialTheme.typography.titleMedium else MaterialTheme.typography.titleLarge)
+        if (home) {
+            station?.let { Text(it, style = MaterialTheme.typography.titleLarge,
+                maxLines = 2, overflow = TextOverflow.Ellipsis) }
+            Text(frequency ?: tr(R.string.frequency_unavailable),
+                style = if (station != null) MaterialTheme.typography.titleMedium else MaterialTheme.typography.titleLarge)
+        } else {
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                station?.let { Text(it, Modifier.weight(1f), style = MaterialTheme.typography.titleLarge,
+                    maxLines = 1, overflow = TextOverflow.Ellipsis) }
+                Text(frequency ?: tr(R.string.frequency_unavailable),
+                    style = if (station != null) MaterialTheme.typography.titleMedium else MaterialTheme.typography.titleLarge,
+                    maxLines = 1, overflow = TextOverflow.Ellipsis)
+            }
+        }
         if (!home && details.isNotEmpty()) Text(details.joinToString(" · "),
-            style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant,
+            maxLines = 1, overflow = TextOverflow.Ellipsis)
         radioText?.let { Text(it, style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 2, overflow = TextOverflow.Ellipsis) }
-        if (!home) programType?.let { Text(it, style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis) }
+            color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = if (home) 2 else 1, overflow = TextOverflow.Ellipsis) }
         if (home && details.isNotEmpty()) Text(details.joinToString(" · "),
             style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
         val status = when {
@@ -54,13 +64,5 @@ internal fun TunerMetadata(info: TunerStatus?, home: Boolean) {
         }
         status?.let { Text(it, style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant) }
-        if (!home) {
-            if (info?.preset == null) Text(tr(R.string.no_preset), style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant)
-            info?.clockTime?.takeIf { it.isNotBlank() }?.let {
-                Text(tr(R.string.rds_clock, it), style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant)
-            }
-        }
     }
 }

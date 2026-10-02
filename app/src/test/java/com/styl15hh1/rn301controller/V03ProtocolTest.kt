@@ -72,7 +72,7 @@ class V03ProtocolTest {
     @Test fun presetFrequencyIsNotInventedStationName() {
         val view = TunerPreset(2, "FM 97.90 MHz").presentation(null)
         assertNull(view.station)
-        assertEquals("FM 97.90 MHz", view.frequency)
+        assertEquals("97.90 MHz", view.frequency)
         assertEquals(2, view.number)
         assertFalse(view.selected)
     }

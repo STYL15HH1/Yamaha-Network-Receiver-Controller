@@ -69,10 +69,10 @@ class V073UiTest {
         compose.onNodeWithText("News").assertDoesNotExist()
         compose.onNodeWithText("97.4 MHz").assertExists()
     }
-    @Test fun clockIsOptionalAndDoesNotDetermineStereo() {
+    @Test fun playerOmitsClockAndPreservesActualStereoIndication() {
         var state by mutableStateOf(info())
         compose.setContent{MaterialTheme{Column{TunerInformation(state)}}}
-        compose.onNodeWithText("RDS clock: 12:34").assertExists()
+        compose.onNodeWithText("RDS clock: 12:34").assertDoesNotExist()
         compose.onNodeWithText("Tuned · Mono",substring=true).assertExists() // FM mode is Auto, actual Stereo is Negate.
         compose.runOnIdle{state=info(false)}
         compose.onNodeWithText("RDS clock:",substring=true).assertDoesNotExist()
@@ -109,7 +109,7 @@ class V073UiTest {
         assertEquals(2,layouts.single().lineCount)
         assertTrue(layouts.single().isLineEllipsized(1))
     }
-    @Test fun programServiceRemainsPrimaryAndPtyIsDetailedOnly() {
+    @Test fun programServiceRemainsPrimaryAndPtyIsHidden() {
         val xml=javaClass.getResource("/rn301-tuner-not-ready.xml")!!.readText()
             .replace("Not Ready","Ready")
             .replace("<Program_Service></Program_Service>","<Program_Service>TOK FM</Program_Service>")
@@ -126,8 +126,7 @@ class V073UiTest {
             val radioText=compose.onNodeWithText("tokfm.pl").fetchSemanticsNode().boundsInRoot
             assertTrue(station.bottom <= radioText.top)
             compose.onAllNodesWithText("TOK FM").assertCountEquals(1)
-            if(isHome) compose.onNodeWithText("INFO").assertDoesNotExist()
-            else compose.onNodeWithText("INFO").assertExists()
+            compose.onNodeWithText("INFO").assertDoesNotExist()
         }
     }
     @Test fun receiverInformationShowsFirmwareOrUnavailableWithoutNetwork() {

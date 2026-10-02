@@ -3,6 +3,7 @@ package com.styl15hh1.rn301controller.data.protocol
 object YamahaXmlBuilder {
     fun build(command: YamahaCommand): String {
         val body = when (command) {
+            is YamahaCommand.NetworkConfig -> "<${command.source.name}><Config>GetParam</Config></${command.source.name}>"
             YamahaCommand.NetRadioList -> "<NET_RADIO><List_Info>GetParam</List_Info></NET_RADIO>"
             YamahaCommand.NetRadioInfo -> "<NET_RADIO><Play_Info>GetParam</Play_Info></NET_RADIO>"
             is YamahaCommand.NetRadioSelect -> {
@@ -58,7 +59,7 @@ object YamahaXmlBuilder {
                 "<Main_Zone><Volume><Lvl><Val>${it.value}</Val><Exp>${it.exponent}</Exp><Unit>${escape(it.unit)}</Unit></Lvl></Volume></Main_Zone>"
             }
         }
-        val method = if (command == YamahaCommand.NetRadioList || command == YamahaCommand.NetRadioInfo || command == YamahaCommand.Status || command == YamahaCommand.Config || command == YamahaCommand.Inputs || command == YamahaCommand.TunerInfo || command == YamahaCommand.TunerPresets || command == YamahaCommand.TunerConfig || command == YamahaCommand.SpotifyInfo || command == YamahaCommand.ServerInfo || command == YamahaCommand.ServerList) "GET" else "PUT"
+        val method = if (command is YamahaCommand.NetworkConfig || command == YamahaCommand.NetRadioList || command == YamahaCommand.NetRadioInfo || command == YamahaCommand.Status || command == YamahaCommand.Config || command == YamahaCommand.Inputs || command == YamahaCommand.TunerInfo || command == YamahaCommand.TunerPresets || command == YamahaCommand.TunerConfig || command == YamahaCommand.SpotifyInfo || command == YamahaCommand.ServerInfo || command == YamahaCommand.ServerList) "GET" else "PUT"
         return "<?xml version=\"1.0\" encoding=\"utf-8\"?><YAMAHA_AV cmd=\"$method\">$body</YAMAHA_AV>"
     }
     private fun escape(s: String) = s.replace("&", "&amp;").replace("<", "&lt;")

@@ -34,6 +34,7 @@ fun SettingsScreen(vm: ReceiverViewModel, settings: AppSettings, selectLanguage:
         SettingsRow(tr(R.string.appearance), appearanceName(preferences.appearance)) { themes = true }
     }
     Section(tr(R.string.receiver)) {
+        SettingsRow(tr(R.string.report_title), tr(R.string.report_hint)) { vm.compatibility() }
         Text(tr(R.string.connected_receiver))
         Text(tr(if (receiver.connectionState == com.styl15hh1.rn301controller.data.model.ConnectionState.CONNECTED)
             R.string.connected else R.string.disconnected))

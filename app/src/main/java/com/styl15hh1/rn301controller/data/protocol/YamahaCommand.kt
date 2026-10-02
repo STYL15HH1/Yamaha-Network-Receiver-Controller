@@ -3,7 +3,11 @@ package com.styl15hh1.rn301controller.data.protocol
 import com.styl15hh1.rn301controller.data.model.Volume
 import com.styl15hh1.rn301controller.data.model.PlayerAction
 
+enum class NetworkFeature { SERVER, NET_RADIO, Spotify }
+
 sealed interface YamahaCommand {
+    /** Read-only Config paths physically observed on the R-N301. */
+    data class NetworkConfig(val source: NetworkFeature) : YamahaCommand
     data object Status : YamahaCommand
     data object TunerInfo : YamahaCommand
     data object TunerConfig : YamahaCommand

@@ -34,29 +34,13 @@ fun TunerScreen(vm: ReceiverViewModel, enabled: Boolean) {
         }
     }
     tuner.error?.let { ErrorMessage(it.localized()) }
-    Section(tr(R.string.tuner), centered = true) {
-        TunerInformation(info)
-        TunerOptions(tuner, ready, vm::setBand, vm::setFmMode)
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            FilledTonalButton(onClick = { vm.stepPreset(-1) }, enabled = ready && tuner.presetsLoaded && tuner.presets.isNotEmpty()) {
-                Icon(painterResource(R.drawable.ic_previous), null)
-                Spacer(Modifier.width(6.dp))
-                Text(tr(R.string.previous))
-            }
-            FilledTonalButton(onClick = { vm.stepPreset(1) }, enabled = ready && tuner.presetsLoaded && tuner.presets.isNotEmpty()) {
-                Text(tr(R.string.next))
-                Spacer(Modifier.width(6.dp))
-                Icon(painterResource(R.drawable.ic_next), null)
-            }
-        }
-    }
+    TunerPlayer(tuner, ready, vm::setBand, vm::setFmMode, vm::stepPreset)
     Section(tr(R.string.presets)) {
         if (tuner.presetsLoaded) {
             if (tuner.presets.isEmpty()) Text(tr(R.string.no_presets))
             PresetGrid(tuner.presets.map { it.presentation(info) }, ready, vm::preset)
         } else if (tuner.presetError != null) {
-            Text(tr(R.string.preset_fallback))
-            PresetGrid((1..8).map { PresetPresentation(it, null, null, info?.preset == it) }, ready, vm::preset)
+            ErrorMessage(tuner.presetError!!.localized())
         } else Text(tr(R.string.waiting_presets))
         TextButton(onClick = vm::refreshTuner, enabled = enabled) { Text(tr(R.string.refresh_tuner)) }
     }
@@ -73,8 +57,8 @@ internal fun PresetGrid(presets: List<PresetPresentation>, enabled: Boolean, sel
         val columns = PresetLayout.columns(maxWidth.value, LocalDensity.current.fontScale)
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             presets.chunked(columns).forEach { row ->
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    row.forEach { preset -> PresetCard(preset, enabled, Modifier.weight(1f)) { select(preset.number) } }
+                Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                    row.forEach { preset -> PresetCard(preset, enabled, Modifier.weight(1f).fillMaxHeight()) { select(preset.number) } }
                     repeat(columns - row.size) { Spacer(Modifier.weight(1f)) }
                 }
             }
@@ -103,3 +87,32 @@ fun CompactTuner(vm: ReceiverViewModel) {
 
 @Composable
 internal fun TunerInformation(info: TunerStatus?) = TunerMetadata(info, home = false)
+
+@Composable
+internal fun TunerPlayer(tuner: TunerState, ready: Boolean, selectBand: (TunerBand) -> Unit,
+    selectMode: (FmMode) -> Unit, stepPreset: (Int) -> Unit) {
+    OutlinedCard(Modifier.fillMaxWidth()) {
+        Column(Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
+            verticalArrangement = Arrangement.spacedBy(2.dp)) {
+            Text(tr(R.string.tuner), style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.primary)
+            TunerInformation(tuner.status)
+            TunerOptions(tuner, ready, selectBand, selectMode)
+            FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                val canStep = ready && tuner.presetsLoaded && tuner.presets.isNotEmpty()
+                FilledTonalButton(onClick = { stepPreset(-1) }, enabled = canStep,
+                    contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)) {
+                    Icon(painterResource(R.drawable.ic_previous), null)
+                    Spacer(Modifier.width(6.dp))
+                    Text(tr(R.string.previous))
+                }
+                FilledTonalButton(onClick = { stepPreset(1) }, enabled = canStep,
+                    contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp)) {
+                    Text(tr(R.string.next))
+                    Spacer(Modifier.width(6.dp))
+                    Icon(painterResource(R.drawable.ic_next), null)
+                }
+            }
+        }
+    }
+}

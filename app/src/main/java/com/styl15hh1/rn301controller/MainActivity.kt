@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.content.Context
 import com.styl15hh1.rn301controller.data.settings.*
 import com.styl15hh1.rn301controller.data.discovery.*
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -24,15 +23,13 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val settings = AppSettings(PreferencesSettingsStore(applicationContext))
+        val runtime = ReceiverRuntime.get(applicationContext)
+        val settings = runtime.settings
         AndroidLocales.syncPlatform(this, settings)
         val factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>): T =
-                ReceiverViewModel(YamahaRepository(
-                    YamahaHttpClient(applicationContext), PreferencesAddressStore(applicationContext),
-                    log = { if (BuildConfig.DEBUG) Log.d("YamahaRepository", it) }
-                ), SsdpYamahaDiscovery(AndroidSsdpSearch(applicationContext), YamahaReceiverVerifier(YamahaHttpClient(applicationContext))), settings) as T
+                ReceiverViewModel(runtime.repository, SsdpYamahaDiscovery(AndroidSsdpSearch(applicationContext), YamahaReceiverVerifier(YamahaHttpClient(applicationContext))), settings) as T
         }
         setContent {
             val vm: ReceiverViewModel = viewModel(factory = factory)

@@ -42,6 +42,7 @@ fun ReceiverScreen(vm: ReceiverViewModel, settings: AppSettings, selectLanguage:
                     Icon(painterResource(R.drawable.ic_back), tr(R.string.back))
                 }
                 Text(when(page) {
+                    ReceiverPage.COMPATIBILITY -> tr(R.string.report_title)
                     ReceiverPage.SETTINGS -> tr(R.string.settings)
                     ReceiverPage.ABOUT -> tr(R.string.about)
                     ReceiverPage.TUNER -> tr(R.string.tuner)
@@ -66,6 +67,7 @@ fun ReceiverScreen(vm: ReceiverViewModel, settings: AppSettings, selectLanguage:
                     verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     when(page) {
                         ReceiverPage.CONNECTION -> ConnectionControls(vm)
+                        ReceiverPage.COMPATIBILITY -> CompatibilityScreen(vm)
                         ReceiverPage.SETTINGS -> SettingsScreen(vm, settings, selectLanguage)
                         ReceiverPage.ABOUT -> { AboutSection(); ReceiverInformation(state) }
                         ReceiverPage.TUNER -> TunerScreen(vm, powered && state.currentSource?.id == "TUNER")

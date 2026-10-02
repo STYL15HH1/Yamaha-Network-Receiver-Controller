@@ -9,7 +9,7 @@ import java.io.StringReader
 import javax.xml.parsers.DocumentBuilderFactory
 
 data class Capabilities(val model: String?, val paths: Set<String>, val volumeRange: VolumeRange?)
-data class SystemConfig(val model: String?, val volumeRange: VolumeRange?, val firmware: String? = null)
+data class SystemConfig(val model: String?, val volumeRange: VolumeRange?, val firmware: String? = null, val features: Map<String, Boolean?> = emptyMap())
 
 class YamahaXmlParser {
     private fun document(xml: String): Element {
@@ -189,7 +189,20 @@ class YamahaXmlParser {
             )
         } catch (_: Exception) { null }
         return SystemConfig(node.child("Model_Name")?.textContent?.trim()?.takeIf { it.isNotEmpty() }, range,
-            node.child("Version")?.textContent?.trim()?.takeIf { it.isNotEmpty() })
+            node.child("Version")?.textContent?.trim()?.takeIf { it.isNotEmpty() },
+            node.child("Feature_Existence")?.children().orEmpty().associate {
+                it.tagName to when (it.textContent.trim()) { "1" -> true; "0" -> false; else -> null }
+            })
+    }
+
+    fun featureAvailability(xml: String, source: String, node: String): String? =
+        (response(xml, "GET").path(source, node) ?: invalid("Missing feature node"))
+            .child("Feature_Availability")?.textContent?.trim()
+
+    fun rdsCapability(xml: String): Boolean? = when (
+        (response(xml, "GET").path("Tuner", "Config") ?: invalid("Missing Tuner Config"))
+            .child("RDS")?.textContent?.trim()) {
+        "Exist" -> true; "Not Exist" -> false; else -> null
     }
 
     fun inputs(xml: String): List<Source> {

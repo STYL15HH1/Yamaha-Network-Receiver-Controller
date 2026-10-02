@@ -17,6 +17,7 @@ class TunerRepositoryTest {
         var preset = 6
         var tunerFails = false
         var presetFails = false
+        var presetTitle = "3 : FM 101.20 MHz"
         override suspend fun resolve(address: ReceiverAddress) = "192.168.1.55"
         override suspend fun description(ip: String) = "<Unit_Description Unit_Name=\"R-N301\"/>"
         override suspend fun command(ip: String, command: YamahaCommand): String {
@@ -31,7 +32,7 @@ class TunerRepositoryTest {
                 }
                 YamahaCommand.TunerPresets -> {
                     if (presetFails) throw YamahaException(ReceiverError(ErrorKind.UNSUPPORTED_COMMAND))
-                    fixture("rn301-presets.xml")
+                    fixture("rn301-presets.xml").replace("3 : FM 101.20 MHz", presetTitle)
                 }
                 is YamahaCommand.SetPreset -> {
                     preset = command.number
@@ -44,6 +45,19 @@ class TunerRepositoryTest {
     private val store = object : AddressStore {
         override suspend fun read() = ""
         override suspend fun write(address: String) = Unit
+    }
+    @Test fun existingTunerRefreshReplacesStoredFrequency() = runTest {
+        val fake = Fake()
+        val repo = YamahaRepository(fake, store, io = StandardTestDispatcher(testScheduler))
+        repo.connect("receiver")
+        repo.refreshTuner()
+        assertEquals("101.20 MHz", repo.tuner.value.presets.single { it.number == 3 }.presentation(null).frequency)
+        fake.presetTitle = "3 : FM 105.60 MHz"
+        fake.commands.clear()
+        repo.refreshTuner()
+        assertEquals("105.60 MHz", repo.tuner.value.presets.single { it.number == 3 }.presentation(null).frequency)
+        assertEquals(1, fake.commands.count { it == YamahaCommand.TunerPresets })
+        assertFalse(fake.commands.any { it is YamahaCommand.SetPreset })
     }
     @Test fun nextPreviousUseReturnedSixPresetsAndRefresh() = runTest {
         val fake = Fake()

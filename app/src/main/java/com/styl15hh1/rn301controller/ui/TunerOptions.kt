@@ -18,10 +18,7 @@ internal fun TunerOptions(state: TunerState, enabled: Boolean,
                 onClick = { selectBand(band) }, enabled = enabled && state.range(band) != null,
                 label = { Text(tr(if (band == TunerBand.FM) R.string.band_fm else R.string.band_am)) })
         }
-    }
-    if (state.status?.band == "FM") {
-        Text(tr(R.string.reception), style = MaterialTheme.typography.labelMedium)
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)) {
+        if (state.status?.band == "FM") {
             FmMode.entries.forEach { mode ->
                 FilterChip(selected = state.status.fmMode == mode, enabled = enabled,
                     onClick = { selectMode(mode) },

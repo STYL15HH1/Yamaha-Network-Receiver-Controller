@@ -79,7 +79,7 @@ class DailyUsePresentationTest {
         val current=TunerPreset(1,"FM 90.20 MHz").presentation(info)
         val other=TunerPreset(2,"FM 95.80 MHz").presentation(info)
         assertTrue(current.selected);assertEquals("Radio",current.station)
-        assertFalse(other.selected);assertNull(other.station);assertEquals("FM 95.80 MHz",other.frequency)
+        assertFalse(other.selected);assertNull(other.station);assertEquals("95.80 MHz",other.frequency)
     }
     @Test fun tunerMetadataCanUseGenericPresentation() {
         val tuner=NowPlaying("TUNER",station="Radio",title="Programme")

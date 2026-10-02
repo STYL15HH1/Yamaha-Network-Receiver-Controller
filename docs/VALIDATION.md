@@ -1,5 +1,7 @@
 # Yamaha Receiver Controller rebranding validation - 2026-09-30
 
+> Historical release record. For the current v1.2.0 accepted APK and validation, see [VALIDATION_v1.2.0.md](VALIDATION_v1.2.0.md). Older artifacts and results below are not the current release.
+
 The public project and Android application label are now **Yamaha Receiver Controller**. Current repository links target **STYL15HH1/Yamaha-Receiver-Controller**. Both v1.0.0 and v1.1.0 release-note texts are prepared for reissue under the new name. The v1.0.0 APK has not been rebuilt.
 
 The README presents an Android controller for compatible Yamaha network receivers using the Yamaha legacy XML API, with R-N301 as the primary physically verified target. R-N500 and selected older RX-V/RX-A models remain untested potential candidates. The unchanged connection check still requires R-N301 identification; rebranding does not broaden accepted devices.

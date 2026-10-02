@@ -14,7 +14,7 @@ import com.styl15hh1.rn301controller.data.settings.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
-enum class ReceiverPage { HOME, SETTINGS, ABOUT, TUNER, PLAYER, BROWSER, CONNECTION }
+enum class ReceiverPage { HOME, SETTINGS, ABOUT, TUNER, PLAYER, BROWSER, CONNECTION, COMPATIBILITY }
 
 class ReceiverViewModel(
     private val repository: YamahaRepository,
@@ -165,10 +165,20 @@ class ReceiverViewModel(
     fun browserPage(next: Boolean) = act { repository.browserPage(next) }
     fun browserHome() = act { repository.browserHome() }
     fun refreshBrowser() = act { repository.refreshBrowser() }
+    private val mutableReport = MutableStateFlow<com.styl15hh1.rn301controller.data.model.CompatibilityReport?>(null)
+    val report = mutableReport.asStateFlow()
+    fun compatibility() {
+        mutablePage.value = ReceiverPage.COMPATIBILITY
+        repository.showTuner(false); repository.showPlayer(false)
+    }
+    fun generateReport() = act {
+        mutableReport.value = null
+        mutableReport.value = repository.compatibilityReport(address.value)
+    }
     fun about() { mutablePage.value = ReceiverPage.ABOUT }
     fun back() {
         when(page.value) {
-            ReceiverPage.ABOUT -> settings()
+            ReceiverPage.ABOUT, ReceiverPage.COMPATIBILITY -> settings()
             ReceiverPage.BROWSER -> {
                 if (status.value.currentSource?.id != browser.value.source ||
                     status.value.powerState != com.styl15hh1.rn301controller.data.model.PowerState.ON ||

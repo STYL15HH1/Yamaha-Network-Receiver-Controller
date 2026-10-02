@@ -3,6 +3,7 @@ package com.styl15hh1.rn301controller.ui
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -16,6 +17,7 @@ import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.styl15hh1.rn301controller.R
 import com.styl15hh1.rn301controller.data.model.*
 
@@ -29,9 +31,17 @@ internal fun PresetCard(preset: PresetPresentation, enabled: Boolean, modifier: 
             disabledContainerColor = if (preset.selected) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceContainerLow),
         border = BorderStroke(if (preset.selected) 2.dp else 1.dp,
             if (preset.selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant)) {
-        Box(Modifier.fillMaxWidth().heightIn(min = 68.dp).padding(8.dp),
-            contentAlignment = Alignment.Center) {
+        Column(Modifier.fillMaxWidth().heightIn(min = 68.dp).padding(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
             Text(preset.number.toString(), style = MaterialTheme.typography.headlineSmall)
+            preset.frequency?.let { frequency ->
+                val frequencySize = MaterialTheme.typography.headlineSmall.fontSize * 0.5f
+                Text(frequency, modifier = Modifier.fillMaxWidth(), style = MaterialTheme.typography.bodySmall,
+                    fontSize = frequencySize,
+                    autoSize = TextAutoSize.StepBased(minFontSize = 6.sp, maxFontSize = frequencySize, stepSize = 0.5.sp),
+                    maxLines = 1, softWrap = false,
+                    textAlign = TextAlign.Center)
+            }
         }
     }
 }

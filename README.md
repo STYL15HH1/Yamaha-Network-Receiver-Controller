@@ -2,9 +2,9 @@
 
 A native **Android controller for compatible Yamaha network receivers**, built around the **Yamaha legacy XML API**. **Yamaha R-N301** is the primary physically verified receiver. Control volume, sources, DLNA media and Internet Radio directly through the receiver, without an application cloud backend, Yamaha account or Spotify account integration in the app.
 
-**Stable version: v1.1.0 · Android 8.0+ · Eight languages · MIT**
+**Release version: v1.2.0 (code 17) · Android 8.0+ · Eight languages · MIT**
 
-[Download from GitHub Releases](https://github.com/STYL15HH1/Yamaha-Receiver-Controller/releases) · [Release notes](docs/RELEASE_NOTES_v1.1.0.md) · [Protocol documentation](docs/YAMAHA_PROTOCOL.md)
+[Download from GitHub Releases](https://github.com/STYL15HH1/Yamaha-Receiver-Controller/releases) · [Release notes](docs/RELEASE_NOTES_v1.2.0.md) · [Protocol documentation](docs/YAMAHA_PROTOCOL.md)
 
 **Independent open-source project. Not affiliated with or endorsed by Yamaha Corporation.**
 
@@ -13,8 +13,8 @@ A native **Android controller for compatible Yamaha network receivers**, built a
 <table>
 <tr>
   <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093550_Yamaha%20Receiver%20Controller.jpg" width="220" alt="Home &amp; rotary volume"><br><strong>Home &amp; rotary volume</strong></td>
-  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093608_Yamaha%20Receiver%20Controller.jpg" width="220" alt="Tuner &amp; presets"><br><strong>Tuner &amp; presets</strong></td>
-  <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093618_Yamaha%20Receiver%20Controller.jpg" width="220" alt="Tuner Now Playing"><br><strong>Tuner Now Playing</strong></td>
+  <td align="center" valign="top"><img src="docs/screenshots/Yamaha-Receiver-Controller-Tuner-v1.2.0.jpg" width="220" alt="Tuner &amp; presets"><br><strong>Tuner &amp; presets</strong></td>
+  <td align="center" valign="top"><img src="docs/screenshots/Yamaha-Receiver-Controller-Tuner-RDS-v1.2.0.jpg" width="220" alt="Tuner / RDS"><br><strong>Tuner / RDS</strong></td>
   <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093638_Yamaha%20Receiver%20Controller.jpg" width="220" alt="Source selection"><br><strong>Source selection</strong></td>
 </tr>
 <tr>
@@ -23,9 +23,39 @@ A native **Android controller for compatible Yamaha network receivers**, built a
   <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093717_Yamaha%20Receiver%20Controller.jpg" width="220" alt="Four Favorites"><br><strong>Four Favorites</strong></td>
   <td align="center" valign="top"><img src="docs/screenshots/Screenshot_20260929_093727_Yamaha%20Receiver%20Controller.jpg" width="220" alt="Compact Home &amp; Spotify"><br><strong>Compact Home &amp; Spotify</strong></td>
 </tr>
+<tr>
+  <td align="center" valign="top"><img src="docs/screenshots/Yamaha-Receiver-Controller-Widget-v1.2.0.jpg" width="220" alt="Home Screen Widget"><br><strong>Home Screen Widget</strong></td>
+</tr>
 </table>
 
-Actual v1.0.0 phone captures supplied for public use, shown at their original proportions. Radio metadata and catalogue contents come from the receiver and may vary; no particular catalogue backend is required.
+Final v1.2.0 Widget and Tuner captures are shown alongside earlier screenshots of unchanged features. Images retain their supplied content and proportions. Radio metadata and catalogue contents come from the receiver and may vary.
+
+## New in v1.2.0
+
+The signed v1.2.0 APK has been physically accepted on Yamaha R-N301. GitHub publication is pending a separate manual step; the repository and local upload assets are prepared for release.
+
+### Home Screen Widget
+
+- Power On / Standby, manual Refresh, current source and source-specific station/track metadata.
+- Up to four Favorite Sources: one to three are centered; four fill the row. The selected source is highlighted.
+- Responsive resizing, light/dark appearance, and an offline/cached state with a stale update time.
+- No continuous background polling and no volume controls. All instances use the saved receiver and existing favorites.
+- Add it through the launcher's widget picker after connecting in the app; tap the information area to open the app.
+
+### Tuner
+
+- Compact player with station and frequency on one row, a compact status line and one-line Radio Text with ellipsis.
+- FM / AM / Auto / Mono controls share one row when width permits; Previous / Next remain available. The shorter player leaves more presets visible without scrolling.
+- Preset tiles show a dominant number and smaller, single-line stored frequency, such as `99.10 MHz` or `1134 kHz`.
+- The receiver remains the source of truth. Existing tuner refresh reloads stored frequencies; there is no local preset-frequency database or RDS scanning. The preset count stays dynamic and uses the receiver's returned list.
+
+### Compatibility Report
+
+Open **Settings → Receiver → Compatibility Report** for read-only GET diagnostics: model and firmware, a capability map, Tuner / RDS / presets, and SERVER / NET RADIO / Spotify / AirPlay information where available. Declared capability, successful API reads and runtime readiness are distinct: “Not Ready” does not mean unsupported. AirPlay information is declaration-based where advertised.
+
+Use **Copy Report** or **Share Report** explicitly. No automatic telemetry or uploads occur. Export excludes IP address and System_ID, as well as raw XML, raw errors, network identifiers and station/track metadata. Unfamiliar identity formats may appear as unknown.
+
+Only **Yamaha R-N301** is physically verified. Reports can diagnose another local Yamaha model without enabling normal controls or establishing physical compatibility. See the [v1.2.0 release notes](docs/RELEASE_NOTES_v1.2.0.md) and [final validation](docs/VALIDATION_v1.2.0.md).
 
 ## Features
 
@@ -55,7 +85,7 @@ Appearance supports **System / Light / Dark**, with saved preferences.
 
 **Yamaha R-N301 is the primary and physically tested target.** The application communicates through Yamaha's legacy local XML control endpoint: `/YamahaRemoteControl/ctrl`.
 
-Other Yamaha network receivers exposing the same legacy XML API may be partially or fully compatible. Yamaha R-N500 and selected older RX-V and RX-A receivers are potential compatibility candidates only; they are not claimed as supported, verified or tested. The current connection check still requires an R-N301 model identification; this rebranding does not broaden device acceptance.
+Other Yamaha network receivers exposing the same legacy XML API may be partially or fully compatible. Yamaha R-N500 and selected older RX-V and RX-A receivers are potential compatibility candidates only; they are not claimed as supported, verified or tested. The current connection check still requires an R-N301 model identification; the diagnostic report does not broaden normal device acceptance.
 
 Compatibility can vary because receivers expose different inputs, tuner capabilities, network services and XML command trees.
 
@@ -85,8 +115,8 @@ Manual connection is available when the network blocks multicast discovery.
 
 ## Installation
 
-1. Open [GitHub Releases](https://github.com/STYL15HH1/Yamaha-Receiver-Controller/releases).
-2. Download the signed **Yamaha-Receiver-Controller-v1.1.0.apk** release asset.
+1. Once v1.2.0 is published, open [GitHub Releases](https://github.com/STYL15HH1/Yamaha-Receiver-Controller/releases).
+2. Download the signed **Yamaha-Receiver-Controller-v1.2.0.apk** release asset.
 3. Open the APK on your phone and, when prompted, allow installation from the trusted browser or file manager.
 4. Discover your receiver or enter its address in Settings.
 
@@ -154,16 +184,17 @@ Release builds fail if signing properties are missing; debug builds remain indep
 - Preset storage, tone controls, speaker A/B selection and Sleep are not implemented.
 - SERVER and Net Radio search cover the loaded menu, not the entire catalogue. Loading is bounded to 64 pages and 90 seconds; large or slow menus can reach those limits.
 - Another controller can change the receiver menu during browsing. Unavailable services/media and missing metadata are reported without inventing content.
-- No direct stream URLs, artwork fetching, background service or home-screen widget.
+- No direct stream URLs or artwork fetching. Widget actions use finite background jobs; there is no continuous background polling.
 
 ## Documentation
 
 - [Yamaha protocol and verified commands](docs/YAMAHA_PROTOCOL.md)
 - [Capability audit and unresolved features](docs/RN301_CAPABILITY_AUDIT.md)
 - [Discovery](docs/DISCOVERY.md)
-- [Validation](docs/VALIDATION.md)
+- [Final v1.2.0 validation](docs/VALIDATION_v1.2.0.md)
+- [Widget implementation notes](docs/WIDGET_REFINEMENT_v1.2.0.md)
 - [Physical test findings](docs/PHYSICAL_TEST_CHECKLIST.md)
-- [v1.1.0 release notes](docs/RELEASE_NOTES_v1.1.0.md)
+- [v1.2.0 release notes](docs/RELEASE_NOTES_v1.2.0.md)
 - [Third-party notices](THIRD_PARTY_NOTICES.md)
 
 ## License and attribution

@@ -25,8 +25,8 @@ class BrandingTest {
     }
     @Test fun rebrandingPreservesReleaseIdentityAndEnglishDisclaimer() {
         assertEquals("com.styl15hh1.rn301controller",BuildConfig.APPLICATION_ID)
-        assertEquals("1.1.0",BuildConfig.VERSION_NAME)
-        assertEquals(16,BuildConfig.VERSION_CODE)
+        assertEquals("1.2.0",BuildConfig.VERSION_NAME)
+        assertEquals(17,BuildConfig.VERSION_CODE)
         val app=RuntimeEnvironment.getApplication()
         val config=Configuration(app.resources.configuration).apply { setLocale(Locale.ENGLISH) }
         assertEquals("Independent open-source project. Not affiliated with or endorsed by Yamaha Corporation.",

@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/widget_root" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@drawable/widget_background" android:paddingStart="8dp" android:paddingEnd="8dp" android:paddingTop="6dp" android:paddingBottom="6dp">
+<LinearLayout android:id="@+id/widget_header" android:layout_width="match_parent" android:layout_height="48dp" android:gravity="center_vertical" android:baselineAligned="false"><TextView android:id="@+id/widget_receiver" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/app_name" android:textColor="#E6EDEC" android:textSize="16sp" android:textStyle="bold" android:maxLines="1" android:ellipsize="end" android:includeFontPadding="false"/><ImageButton android:id="@+id/widget_power" android:layout_width="48dp" android:layout_height="48dp" android:padding="12dp" android:src="@drawable/ic_power" android:tint="#89DEC6" android:background="@drawable/widget_tile_dark_selected" android:contentDescription="@string/power"/>
+<ImageButton android:id="@+id/widget_refresh" android:layout_width="44dp" android:layout_height="44dp" android:layout_marginStart="4dp" android:padding="10dp" android:src="@drawable/ic_refresh" android:tint="#89DEC6" android:background="@drawable/widget_tile_dark" android:contentDescription="@string/widget_refresh"/></LinearLayout>
+<LinearLayout android:id="@+id/widget_info" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:layout_marginTop="4dp" android:gravity="center_vertical" android:paddingStart="10dp" android:paddingEnd="10dp" android:background="@drawable/widget_tile_dark" android:baselineAligned="false">
+<ImageView android:id="@+id/widget_source_icon" android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="10dp" android:scaleType="fitCenter" android:importantForAccessibility="no"/>
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+<TextView android:id="@+id/widget_source" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/connect_receiver" android:textColor="#89DEC6" android:textSize="20sp" android:textStyle="bold" android:maxLines="1" android:ellipsize="end" android:includeFontPadding="false"/>
+<TextView android:id="@+id/widget_metadata" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#E6EDEC" android:textSize="13sp" android:maxLines="1" android:ellipsize="end" android:includeFontPadding="false" android:visibility="gone"/>
+<TextView android:id="@+id/widget_secondary" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#AAB9B5" android:textSize="11sp" android:maxLines="1" android:ellipsize="end" android:includeFontPadding="false" android:visibility="gone"/>
+<TextView android:id="@+id/widget_status" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#AAB9B5" android:textSize="11sp" android:maxLines="1" android:ellipsize="end" android:includeFontPadding="false" android:visibility="gone"/>
+</LinearLayout></LinearLayout>
+    <LinearLayout android:id="@+id/widget_favorites" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="4dp" android:baselineAligned="false" android:gravity="center_horizontal" android:weightSum="4" android:visibility="gone">
+            <LinearLayout android:id="@+id/widget_tile_1" android:layout_width="0dp" android:layout_weight="1" android:layout_height="56dp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:orientation="vertical" android:gravity="center"
+                android:padding="4dp" android:background="@drawable/widget_tile_dark" android:visibility="gone" android:focusable="true">
+                <ImageView android:id="@+id/widget_icon_1" android:layout_width="match_parent" android:layout_height="20dp"
+                    android:scaleType="fitCenter" android:importantForAccessibility="no"/>
+                <TextView android:id="@+id/widget_favorite_1" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:gravity="center" android:textColor="#E6EDEC" android:textSize="11sp" android:maxLines="2"
+                    android:ellipsize="end" android:includeFontPadding="false" android:importantForAccessibility="no"/>
+            </LinearLayout>
+            <LinearLayout android:id="@+id/widget_tile_2" android:layout_width="0dp" android:layout_weight="1" android:layout_height="56dp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:orientation="vertical" android:gravity="center"
+                android:padding="4dp" android:background="@drawable/widget_tile_dark" android:visibility="gone" android:focusable="true">
+                <ImageView android:id="@+id/widget_icon_2" android:layout_width="match_parent" android:layout_height="20dp"
+                    android:scaleType="fitCenter" android:importantForAccessibility="no"/>
+                <TextView android:id="@+id/widget_favorite_2" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:gravity="center" android:textColor="#E6EDEC" android:textSize="11sp" android:maxLines="2"
+                    android:ellipsize="end" android:includeFontPadding="false" android:importantForAccessibility="no"/>
+            </LinearLayout>
+            <LinearLayout android:id="@+id/widget_tile_3" android:layout_width="0dp" android:layout_weight="1" android:layout_height="56dp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:orientation="vertical" android:gravity="center"
+                android:padding="4dp" android:background="@drawable/widget_tile_dark" android:visibility="gone" android:focusable="true">
+                <ImageView android:id="@+id/widget_icon_3" android:layout_width="match_parent" android:layout_height="20dp"
+                    android:scaleType="fitCenter" android:importantForAccessibility="no"/>
+                <TextView android:id="@+id/widget_favorite_3" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:gravity="center" android:textColor="#E6EDEC" android:textSize="11sp" android:maxLines="2"
+                    android:ellipsize="end" android:includeFontPadding="false" android:importantForAccessibility="no"/>
+            </LinearLayout>
+            <LinearLayout android:id="@+id/widget_tile_4" android:layout_width="0dp" android:layout_weight="1" android:layout_height="56dp"
+                android:layout_marginStart="2dp" android:layout_marginEnd="2dp" android:orientation="vertical" android:gravity="center"
+                android:padding="4dp" android:background="@drawable/widget_tile_dark" android:visibility="gone" android:focusable="true">
+                <ImageView android:id="@+id/widget_icon_4" android:layout_width="match_parent" android:layout_height="20dp"
+                    android:scaleType="fitCenter" android:importantForAccessibility="no"/>
+                <TextView android:id="@+id/widget_favorite_4" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:gravity="center" android:textColor="#E6EDEC" android:textSize="11sp" android:maxLines="2"
+                    android:ellipsize="end" android:includeFontPadding="false" android:importantForAccessibility="no"/>
+            </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
